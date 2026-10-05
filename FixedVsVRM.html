@@ -1,0 +1,882 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"&gt;&lt;title&gt;Variable Rate Check-Up | Tyler Johnson | Broker²&lt;/title&gt;&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""&gt;&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;amp;display=swap"&gt;&lt;style&gt;</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--bg:#F4F5F1; --surface:#FFFFFF; --ink:#1C2A20; --muted:#5B685E; --line:#D7DCD5;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--accent:#355539; --accent-soft:#E3EBE3; --accent-ink:#FFFFFF; --logo-tile:transparent;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--up:#B04A22; --up-soft:#FBEAE2; --down:#1F7A4A; --warn-soft:#FFF4D6; --warn:#8A5A00;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--field:#F8F9F6;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--display:"Public Sans", "Helvetica Neue", Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--body:"Public Sans", "Helvetica Neue", Arial, sans-serif;</p>
+<p class="p1">}</p>
+<p class="p1">@media (prefers-color-scheme: dark){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>:root:not([data-theme="light"]){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>color-scheme:dark;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--bg:#111812; --surface:#18221A; --ink:#E8EEE8; --muted:#9FAEA2; --line:#2B382D;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--accent:#8FC39A; --accent-soft:#1F3323; --accent-ink:#0E1A10; --logo-tile:#F4F5F1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--up:#F08A62; --up-soft:#3A2219; --down:#6BD39A; --warn-soft:#3A3014; --warn:#F2C45A;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--field:#1D2A1F;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p1">:root[data-theme="dark"]{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color-scheme:dark;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--bg:#111812; --surface:#18221A; --ink:#E8EEE8; --muted:#9FAEA2; --line:#2B382D;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--accent:#8FC39A; --accent-soft:#1F3323; --accent-ink:#0E1A10; --logo-tile:#F4F5F1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--up:#F08A62; --up-soft:#3A2219; --down:#6BD39A; --warn-soft:#3A3014; --warn:#F2C45A;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--field:#1D2A1F;</p>
+<p class="p1">}</p>
+<p class="p1">*{box-sizing:border-box}</p>
+<p class="p1">[hidden]{display:none!important}</p>
+<p class="p1">body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px}</p>
+<p class="p1">.wrap{max-width:1080px;margin:0 auto}</p>
+<p class="p1">.num{font-variant-numeric:tabular-nums}</p>
+<p class="p1">header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:20px;border-bottom:1px solid var(--line)}</p>
+<p class="p1">.brand{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.01em}</p>
+<p class="p1">.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.02em}</p>
+<p class="p1">.date-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}</p>
+<p class="p1">.date-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--up)}</p>
+<p class="p1">.hero{padding-block:36px 24px;max-width:720px}</p>
+<p class="p1">.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}</p>
+<p class="p1">h1{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:10px 0 14px;text-wrap:balance;letter-spacing:-.01em}</p>
+<p class="p1">.hero p{color:var(--muted);font-size:16px;margin:0;max-width:60ch}</p>
+<p class="p1">.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start}</p>
+<p class="p1">@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}</p>
+<p class="p1">.grid&gt;*{min-width:0}</p>
+<p class="p1">.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}</p>
+<p class="p1">.panel h2{font-family:var(--display);font-weight:700;font-size:20px;margin:0 0 4px}</p>
+<p class="p1">.panel .sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}</p>
+<p class="p1">.inputs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}</p>
+<p class="p1">@media (max-width:860px){.inputs{position:static}}</p>
+<p class="p1">.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}</p>
+<p class="p1">.field label{font-size:13px;font-weight:600}</p>
+<p class="p1">.hint{font-size:12.5px;color:var(--muted);margin-top:-2px}</p>
+<p class="p1">.affix{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--field);overflow:hidden}</p>
+<p class="p1">.affix:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}</p>
+<p class="p1">.affix span{padding:0 12px;color:var(--muted);font-weight:600}</p>
+<p class="p1">.affix input,.affix select{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:600 17px var(--body);padding:12px 12px 12px 0;outline:none;font-variant-numeric:tabular-nums}</p>
+<p class="p1">.affix select{padding-left:12px;font-size:15px;cursor:pointer}</p>
+<p class="p1">.derived{border-top:1px dashed var(--line);margin-top:6px;padding-top:14px;display:grid;gap:10px}</p>
+<p class="p1">.kv{display:flex;justify-content:space-between;gap:12px;font-size:14px}</p>
+<p class="p1">.kv dt{color:var(--muted)}</p>
+<p class="p1">.kv dd{margin:0;font-weight:700}</p>
+<p class="p1">.error{background:var(--up-soft);color:var(--up);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600}</p>
+<p class="p1">.stack{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}</p>
+<p class="p1">.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;align-items:center}</p>
+<p class="p1">.chip{border:1px solid var(--line);background:var(--field);color:var(--ink);font:600 14px var(--body);padding:8px 14px;border-radius:999px;cursor:pointer}</p>
+<p class="p1">.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}</p>
+<p class="p1">.chip:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}</p>
+<p class="p1">.custom{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}</p>
+<p class="p1">.custom .affix{width:110px}</p>
+<p class="p1">.custom .affix input{font-size:14px;padding:8px 0 8px 10px}</p>
+<p class="p1">.custom .affix span{padding:0 10px 0 4px}</p>
+<p class="p1">.big{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;margin-bottom:18px}</p>
+<p class="p1">.big .label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}</p>
+<p class="p1">.big .val{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,44px);line-height:1.05}</p>
+<p class="p1">.delta{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px}</p>
+<p class="p1">.delta.up{background:var(--up-soft);color:var(--up)}</p>
+<p class="p1">.delta.down{background:var(--accent-soft);color:var(--down)}</p>
+<p class="p1">.delta.flat{background:var(--field);color:var(--muted)}</p>
+<p class="p1">.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}</p>
+<p class="p1">@media (max-width:520px){.tiles{grid-template-columns:1fr}}</p>
+<p class="p1">.tile{background:var(--surface);padding:12px 14px}</p>
+<p class="p1">.tile .t{font-size:12.5px;color:var(--muted)}</p>
+<p class="p1">.tile .v{font-weight:700;font-size:18px}</p>
+<p class="p1">.note{margin-top:16px;border-radius:10px;padding:14px 16px;background:var(--field);font-size:14px}</p>
+<p class="p1">.note b{display:block;margin-bottom:2px}</p>
+<p class="p1">.note.warn{background:var(--warn-soft);color:var(--ink)}</p>
+<p class="p1">.note.warn b{color:var(--warn)}</p>
+<p class="p1">.lock{border:2px solid var(--accent)}</p>
+<p class="p1">.lock-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}</p>
+<p class="p1">.tag{background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:6px}</p>
+<p class="p1">.rate-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:6px 0 20px}</p>
+<p class="p1">.rate-row .affix{width:140px}</p>
+<p class="p1">.rate-row .affix input{font-size:22px;font-family:var(--display);padding-left:14px}</p>
+<p class="p1">.slider{flex:1;min-width:200px;display:flex;flex-direction:column;gap:4px}</p>
+<p class="p1">.slider input{width:100%;accent-color:var(--accent)}</p>
+<p class="p1">.slider .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}</p>
+<p class="p1">.table-wrap{overflow-x:auto;margin-top:18px}</p>
+<p class="p1">table{width:100%;border-collapse:collapse;font-size:14px;min-width:420px}</p>
+<p class="p1">th{text-align:right;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line)}</p>
+<p class="p1">th:first-child,td:first-child{text-align:left}</p>
+<p class="p1">td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}</p>
+<p class="p1">tr.row{cursor:pointer}</p>
+<p class="p1">tr.row:hover td{background:var(--field)}</p>
+<p class="p1">tr.sel td{background:var(--accent-soft);font-weight:700}</p>
+<p class="p1">td.up{color:var(--up)} td.down{color:var(--down)}</p>
+<p class="p1">table.cmp{min-width:620px}</p>
+<p class="p1">table.cmp td:first-child{font-weight:600}</p>
+<p class="p1">table.cmp td small{display:block;font-weight:600;font-size:12px}</p>
+<p class="p1">table.cmp tr.base td{color:var(--muted)}</p>
+<p class="p1">table.cmp tr.fixed td{background:var(--accent-soft)}</p>
+<p class="p1">.cta{margin-top:28px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;background:var(--ink);color:var(--bg);border-radius:14px;padding:24px}</p>
+<p class="p1">.cta h3{font-family:var(--display);font-size:22px;margin:0 0 4px}</p>
+<p class="p1">.cta p{margin:0;opacity:.8;max-width:56ch}</p>
+<p class="p1">.fine{color:var(--muted);font-size:12.5px;margin-top:22px;max-width:90ch}</p>
+<p class="p1">@media (prefers-reduced-motion:no-preference){.val,.v{transition:color .2s}}</p>
+<p class="p1">.for-pill{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;margin-top:16px}</p>
+<p class="p1">.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px;max-width:760px}</p>
+<p class="p1">@media (max-width:620px){.options{grid-template-columns:1fr}}</p>
+<p class="p1">.opt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 16px;font-size:14px}</p>
+<p class="p1">.opt b{display:block;font-family:var(--display);font-size:16px;margin-bottom:2px}</p>
+<p class="p1">.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}</p>
+<p class="p1">.seg label{border:1px solid var(--line);background:var(--field);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:2px}</p>
+<p class="p1">.seg label small{font-weight:500;color:var(--muted);font-size:12px;line-height:1.35}</p>
+<p class="p1">.seg input{position:absolute;opacity:0;pointer-events:none}</p>
+<p class="p1">.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}</p>
+<p class="p1">.seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}</p>
+<p class="p1">.comp{font-size:12.5px;color:var(--muted)}</p>
+<p class="p1">.comp b{color:var(--ink)}</p>
+<p class="p1">.pace{border:2px solid var(--ink)}</p>
+<p class="p1">.tag.ink{background:var(--ink);color:var(--bg)}</p>
+<p class="p1">table.cmp tr.pacerow td{background:var(--field)}</p>
+<p class="p1">table.cmp tr.switchrow td{background:var(--warn-soft)}</p>
+<p class="p1">.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:2px 0 14px}</p>
+<p class="p1">.term{border:1px solid var(--line);background:var(--field);color:var(--ink);border-radius:10px;padding:10px 14px;cursor:pointer;font:500 13.5px var(--body);text-align:left;display:flex;flex-direction:column;gap:2px}</p>
+<p class="p1">.term b{font-size:15px}</p>
+<p class="p1">.term span{color:var(--muted)}</p>
+<p class="p1">.term[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}</p>
+<p class="p1">.term:focus-visible{outline:2px solid var(--accent);outline-offset:2px}</p>
+<p class="p1">.disc{font-size:12.5px;color:var(--muted);margin:-8px 0 18px}</p>
+<p class="p1">.cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 14px;margin-bottom:6px}</p>
+<p class="p1">@media (max-width:620px){.cgrid{grid-template-columns:minmax(0,1fr)}}</p>
+<p class="p1">.cgrid .affix input{font-size:16px;padding-left:12px}</p>
+<p class="p1">.check{display:flex;gap:8px;align-items:center;font-size:14px;margin:4px 0 16px;cursor:pointer}</p>
+<p class="p1">.check input{width:18px;height:18px;accent-color:var(--accent)}</p>
+<p class="p1">.linkbtn{background:none;border:0;padding:0;color:var(--accent);font:600 12.5px var(--body);text-decoration:underline;cursor:pointer}</p>
+<p class="p1">.summary{margin-top:20px}</p>
+<p class="p1">.summary textarea{width:100%;min-height:270px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);font:13.5px/1.55 var(--body);padding:12px 14px;resize:vertical}</p>
+<p class="p1">.sbtns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}</p>
+<p class="p1">.sbtns .btn,.sbtns a.btn{font:700 14px var(--body);border-radius:10px;padding:11px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;display:inline-block}</p>
+<p class="p1">.sbtns .btn.ghost{background:transparent;color:var(--accent)}</p>
+<p class="p1">.sbtns .status{font-size:13px;color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1">.brandmark{display:flex;align-items:center;gap:12px}</p>
+<p class="p1">.brandmark .logo{height:72px;width:auto;display:block;background:var(--logo-tile);border-radius:6px;padding:2px}</p>
+<p class="p1">.brandmark small{font-size:12px;color:var(--muted);font-weight:600;line-height:1.3}</p>
+<p class="p1">.agent{display:flex;align-items:center;gap:12px}</p>
+<p class="p1">.agent img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}</p>
+<p class="p1">.agent .who{line-height:1.3}</p>
+<p class="p1">.agent .who b{display:block;font-size:15px}</p>
+<p class="p1">.agent .who span{font-size:12.5px;color:var(--muted);display:block}</p>
+<p class="p1">.top-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}</p>
+<p class="p1">@media (max-width:620px){.top-right{align-items:flex-start}}</p>
+<p class="p1">.setup{margin-top:18px;background:var(--surface);border:1px dashed var(--accent);border-radius:14px;padding:18px 20px}</p>
+<p class="p1">.setup summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}</p>
+<p class="p1">.setup summary::-webkit-details-marker{display:none}</p>
+<p class="p1">.setup summary .badge{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:3px 8px;border-radius:5px}</p>
+<p class="p1">.setup .sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin-top:14px}</p>
+<p class="p1">@media (max-width:620px){.setup .sgrid{grid-template-columns:minmax(0,1fr)}}</p>
+<p class="p1">.setup .field{margin-bottom:10px}</p>
+<p class="p1">.setup .affix input{font-size:15px;padding-left:12px}</p>
+<p class="p1">.photo-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}</p>
+<p class="p1">.photo-row img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}</p>
+<p class="p1">.btn{font:700 14px var(--body);border-radius:10px;padding:11px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)}</p>
+<p class="p1">.btn.ghost{background:transparent;color:var(--accent)}</p>
+<p class="p1">.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px}</p>
+<p class="p1">.status{font-size:13px;color:var(--muted)}</p>
+<p class="p1">.cta-contact{display:flex;flex-direction:column;gap:8px;min-width:220px}</p>
+<p class="p1">.cta-contact .line{display:flex;gap:8px;align-items:center;font-weight:700;user-select:all}</p>
+<p class="p1">.cta-contact .line span{opacity:.7;font-weight:500;user-select:none;min-width:44px}</p>
+<p class="p1">.cta a.book{display:inline-block;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:800;padding:12px 18px;border-radius:10px;text-align:center}</p>
+<p class="p1">.cta .cta-who{display:flex;gap:12px;align-items:center;margin-top:14px}</p>
+<p class="p1">.cta .cta-who img{width:44px;height:44px;border-radius:50%;object-fit:cover}</p>
+<p class="p1">&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class="wrap" id="app"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="top"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="brandmark"&gt;&lt;img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVYAAAFoCAYAAAAM39NeAABWZklEQVR42u2deXycVfX/P+fcZ2aadC+0hbIVqApVWspkmQmFAIqg4FLaCQi4I4o7KOIORQXki4o/cQM3Vm2npWxqFUUCJXvYaUFA9q2F7kmameee8/tjZtq0TduZNglJOW9f85JXM/Ms5977ueeee+69dOwnju8EUAbDMIy3EEpI3P3HO5v749ps5jUMwzBhNQzDMGE1DMMwYTUMwzBMWA3DMExYDcMwTFgNwzAME1bDMAwTVsMwDBNWwzAMw4TVMAyjfwl29QJEZFY0DONNQVV3T2FVkXUgCgGYwhqGMWCaCkUAwsjdS1gJUFVPSnOc00clFBNWwzAGBA5YQ+9mEOSO3dJj9ayv/OcP/3rZitowjIHk2I+/d+9BK/y7egFSclbEhmEMNKQYtNpjWQGGYRgmrIZhGCashmEYJqyGYRiGCathGIYJq2EYhgmrYRiGYcJqGIZhwmoYhmHCahiGYZiwGoZhmLAahmGYsBqGYZiwGoZhGCashmEYJqyGYRgmrIZhGIYJq2EYhgmrYRiGCathGIZhwmoYhmHCahiGYcJqGIZhmLAahmGYsBqGYZiwGoZhmLAahmEYJqyGYRgmrIZhGCashmEYhgmrYRiGCathGIYJq2EYhmHCahiGYcJqGIZhwmoYhmGYsBqGYZiwGoZhmLAahmGYsBqGYRgmrIZhGCashmEYJqyGYRiGCathGIYJq2EYhgmrYRiGYcJqGIZhwmoYhmHCahiGYZiwGoZhmLAahmGYsBqGYZiwGoZhGCashmEYJqyGYRgmrIZhGIYJq2EYhgmrYRiGCathGIZhwmoYhmHCahiGYcJqGIZhwmoYhmGYsBqGYZiwGoZhmLAahmEYJqyGYRgmrIZhGCashmEYhgmrYRiGCathGIYJq2EYhmHCahiGYcJqGIZhwmoYhmHCahiGYZiwGoZhmLAahmGYsBqGYRgmrIZhGCashmEYJqyGYRiGCathGIYJq2EYhgmrYRiGYcJqGIZhwmoYhmHCahiGYcJqGIZhmLAahmGYsBqGYZiwGoZhGCashmEYJqyGYRgmrIZhGIYJq2EYhgmrYRiGCathGIZhwmoYhmHCahiGMdgJzASGYQxZyITVMAyjz9gQrF8W0fKjdvb3WepcasJqGIbRg4Y/NKwDsGQwPpvFWA3DMExYDcMwBjcWCjAMw+hB/Ox4JPZqbFhnjIe5wGnWrep6+OCHuzAXYsJqGIZRBNWnVU8UUI16HAngXbQK+2RjOipAOAxZr7Hs8K7KpYkVmqInCWhmkbubFzY/bMJqGIaxBRV1yUpSOke8vp+YJ7LL/buqAgoQKJfORQBAk5moEsDpAnRXppKNCvrN8OWRhfX19aEJq2EYb2mSs5ITfARzFfgkO4qpACoC3dYPtPB/+f8gxJj5GFUc0zkxe1dlquZrremGB3v+xCavDMN4y1A5u7LCR3AXOfc5ADHxkvNQS0EB8QIVATMdB8K/46nknEHlsVafWj0ZFJkY+rCotwugfh3WPbI0vTRj1cQAgJmpmeOzDgdZHTK2K6qpmiQIi4hpooR+u98l2rSka3vCK15ATOMYuL5qdk22ZWHDrYNCWL3wN5zTz3ERa9OICKKyekQ4YhqAF62qGADQjeyHGcFvi69DuqY8Uz4NwAtmvbcGVamqA5X0L0w8UXzvk/vElKsfXlRUVxHQpUAZAWPZMaloryKroiCmYer0mhmpxGMPpJueevNDAQLGphBxMR8LXxi9totiP6pWh95KxM+OR0T518y8v0jvosqOoSKPi5dvCTShYfCuWMQdpmHwLoEmxMv3VfVZdr1XHRUFOx7vhC4aFB4rCCUGOEr+vmFs4bVCrRK9deBVkdM5cCf06qnmZvzFi7+co3Jpy40ta3u5xCsAWipTldeID65ix7N7u1YuLIAPV9Ql32U9t2EYuy3Tzjx+OIBvbitOSkSA+vPb5jd9axuiupHWdOur0pX5mPe+kZh6dfmIeThUP2jCarz1UBWKUtYMsfsT6153ErM7REV7Hf6L12tb080/LfZ67Xe0dxJwMXRbq7AUpJQYisKqHLCN5IxdCQZ4CSQ0O7wF+lDgo73NaeYmqfzygPQ7pV5zQyRoFtXlPTMHet4QpHvxEDRUNhtku63KGIaxPSpTlXsBVNObt0pMUOD6pnTTS6Ve12dXdpDq6m0loShAFgowDGP3HJcgiDPTuN7iq+Ilq4Sbdua64zE+CkJ5r9PoBEDxhi1pNQxjt0SIjopEHCSULbxVRpjJPoOx2Ud25rodlJlMShN1W8pK9JgJq2EYuyWq8qTP0jXiN19lxQ4g4ta2q9t3agKTFCl2HOst5UpFFCz/MmE1DGO3pD3d9HsAv+/La844JXkAiD63zbitl8cyka57LMZqGIZRBLW1tUHg8P+YaUJvcVsiAoj/38M3PNxhwmoYhlEEHRO6L2LHH+wtBMCO4UPfVF4euR6w/ViNXei9V4/BiLJo93D1Wu6dY2LWwPnujGY6RkRHrK+/tn6DWWrgiZ8dj0RWRUaGHBlO2FCmEiHnvZCjziyy69untq8r5ZgRA6hIJb/ARN/uba+BXE6srg0YXyjU+d1bWC8EVz4+c4qKzADkcBAdRKLjAYzIpUVQhkhXCdErBDzByg8LMo+0pltfHUqvWZmq3EsociirvAOg/QHdg5gjGurzrQsa5oJolxdUzDgleYCLcJxEKhR6WCcyB0RV9/Cg4XAUAZRUPLKiISOyodNnVlamkq8A+l8i3C9MLcNj0WWDQWyVEEbCyGASlkJG5E6VU8WpR+1Hkq1Q4ioCDsNKOSAk2hM+LFcKIoDCOwYB3YTo+sqlyeWUwtNC+oCSa4RseKA93b5mKNX5RCpRpqJv846nsupBAtqLoCPADITZn7QubH2sz0R1TvKTTPQz9LazSW5rH1XRrzalm+4v/PNuKaxVZ1Ttq5mgjpbpHFU/3TkuB/LnLjDyO3AoAALRxr8gF5AOVlSlapoVWChd3Xe039H++i4L32lHvlO9/3mx33fsSEP5XcvCxj9v6zuHnTRzbNnw8AMAUqpU7YDx5Nym8maC934ZLrro4p1tsFWzqvaVwH0I0FkExAkYQwEDWji+gvJqoD1ypRkEjARhPDG9A8AxAADvfWdX5onKuuQ/oJRuTTc04c3bUCfMIuv7+qJHnJI8IYjQ10WEiv0NEwcCeWhFWeyC50rodA5PzRwfhf+AAnMgYYKYx3J+JZASg3LVGz1TgghURsAYEPYloiMckFJRKCLPVaWSd4LopgN0n3vS6XSf2KYiVf1jx0GFF7/DciZiUtEXOmnN2dvbJ7cyVZMkwmle8V6wHuyYI8CmNkxE8OzmA3isz0SV6bcAIr3FVZkZPvQ/bFvQ9Mee/75bCWv1adUTVdxXNYtPsaMJqgRAsK39FzevdhsLZjw5OpmAk1Eefb6yLnlNVt1vH0wvWbGzz+U1Oy7iIu8uurE5RhjK3dvqqT3oM4D/MrE7GACQ3ydSe9RfUgKgO+Udxk9JHsIBfVGhdY55fKHTURHoDv28vE11q0btiGgqEU0VkS9X1iXvVdBVbbrPLeijhvymDr9nJY7gANcT03hHrgi3GSBHkNC/EQDnFSuqiVRiHwGdA/iPkeP9aGPZKHQH/ZRuOmNk87IhPoCYzlKRs56lF5dU1NVc2XZow6JdDxdQFQd8DIooXWJCmMk+N758PG9LUEH4DqAnEHMAVahgq7ZNRBBo33QMdcnPE/BzAEGvopqLq/6/tgVNF275tyEorCS9DePiqeQcFfyYHB8Evz0x3UF97yFQxLQ/Mf8g6v0nKlOJ77emm3ZqpQYpy7b2gdz2cFW3Wst+RKo6LkS/YOakqu70O27TCz595thhWX8+ET5PjkarR5/eo0fjd+xyZwZV4qW7pC7x/fb5TfcN2Q79Q9WTJaB5TDx+y2T0bXtoBAl1LYBTmuZvGkJuL27qVkU+64m/yY72Ud935d+zzrPjmao6s2ppzT9ktn6rbWHjA7tw6YwU2RZzjgBttVQ9fnK8nIbFvg/SrzDzMPF9X+97F/LkBQS6FABtS1TF+18dSPud14amrb4w5LICSJHlbt6Y2BuPxyOVqeTljmg+iA6S0Jd+hs12hEBCDxAdTMw3VqSSv6s6o2rUm/HeFXOSpzniO4k5mTtvp29H0fHZ1ccMC6WeA/4WQKMllD6zY2/0PDOIQf+qStX84MQTT4wNtfp42Ekzx/oo3cSOpxTbeeY378iK6Fmt8xvv2fGQuuYdvDr6V3LuFwTs059lU6hb5OgEYrq7Yk7iq2+WbaenEvtQWeQ2F6ELAAwbCEEFQJWp5CXMfJlCtxZVApgJEvorWtNNX9xW2GRIp1slUokyOij6Jw74fIVSX4vNZp6WKFzAn5ZMcPuM02omDaioppJnE+N6Ao3tj8pVOTv5ZQ7c34josP4W1N4aMoBhFNB3V45ce2sildhnqNS/KSdOicXK/e9d4JJFl0v+HAMV+Vr7gsb0jj2nxIkEvYuZj9+pg+92oVyIMMoF7meVdYnfx0+Olw9oaCV15P5R0F9d4N4toQxINH5qamq0oi75K3b8LZGt70lEIJCI6LdaFzSdj+081ZAU1vVd6yWVSjkP/NYFfPpAGV5CgXN0dOBxS/yMo/YeEFGtq5nNRFcRKOiHRkUVqcSlFNDPSVGm8iZNlGvOthTQCZ7475Ufrnz7UKiHY0fs+RMX8Kxih/9AbrJDRC5rXdD0ix2LS/IjRLyQmCYNkLe2VYhAvICd+xSXRebHU/HR/X7TyQinf2j6GIbMY8fTS7HtrlDzwZqR5TT6esf8ud5sTUwA6XpV+VRruvGyHZbzUBTWsZmx3c/ixe9z4D46UIbv2ZNzQJUuk/1L1Yn9FxYg0u5EKjGFgKtBvc9I7ronnLjEOfdNVR1QL3V7HRczHYZI5NaqVNWBg7kOVsxJfIsD94WSRDVg+DC89kDs990iPNU6JvwBQPlOj8Qo72XlP7tULkFwEiN6XSKVKOu/Og9d/8p6ikbKfsEBJwaqM6k+rXpiNqY3O3Z120r+V9VXJKuzWtNN1xZV1kNNVJWwoXNCdx0I396e4YkI7Hjjh5hAvMW/7WRly3lX7mgZ6X7ab+8JGuGBXzLTuP4IcVSlEl907L4pfue8/Z62LNiRiEC8a/bNeUh0iML9ZfqHascMSlFNJT/Kjn9QSrnkZpBlsW4IP7+jdKbKuuTRIPo9EQ0rtcMr1HtiAhQZFVmloq+LyjoAWigbUKl13oMD/mAI/KT/PGTaQG9EzybHZw6Uw5RIJaaI57+x4/dsuVlLodxEZGno5cS2m5v+Vex1h1RWgKqCgPGq9FOm3ofGhSNsvZdXyWuLqt5PhGdFeLVzSiqyhwBTCBQHUMGOx27rWNsivKtPV6YSd+1stsD2xAVKnwRhcr/EVOuSRyvo8p05Ui83Gyqqog8o9B5AHyTQCwB1wSNQ9nsKcCiBawCpYedKtm9uVMBVUWR+DuATGEQHSMZT1ccz4ddQuGLfKW+z9hDuYw/e0d653SHpaTWTsl7/SEwjShHuXKdGEO+fE4+/QfRfhOAJGcYrA58Rrz6qGtlLxR8Bxckgejc7LiulfuXqPJ9TlUq2taQb/9DXbRuE/UCYO1ClXTErWSnAX9jxQb16qgFDQrlXOTjjgYX3lnRU+lDMYx3DTOh9to4hIo9A5OeRkG5vXNS4fHsXSp6ePMCH/lQFfYEd779zIkaXVX+g+t/Ntze/1pcvyUyTi2m4uY0fsLV3SAQNdavynf6h2jGQzG/YUVkpKWCF64vXWxR6pY7NNrRve9u1RQBQfWr1ZK/6MQK+wI4n7EQj/lh8TuLf7QuaruvjOhTGumMlF/aM2dXTGO56EIYXK3rEBBF5RphOfXDeDnOhKRPqz1zQe0PfrnCLrFDRHzvgj03pppXb+OoLAFoB/LYyVXO4F/kWM9VtXPBR3FAKAlyeSCXuaUo3PdWHQzQQYRyBdvgs26zzBbK6Q3+8Ynb1+8jhWiIev63hv4RycybT+emHbn1odamvMyQXCGxpeCKCQkPv/WXRbr684bbGdcVcp/GmxucAXB6fddT1FAkvYeZPiBY/NM6fJb6fxPTrAM7vz3fcsgPJe3ZeRV4D0Yuq8jqI8u+tI8C0B1iXY+nSzSpZJNL9TY64Q0sZahEzVGUFVL9ainfePK/5WQAXJ1KJm7yn/8eO31eKYCgUDFwanxW/s31R+yt9E8gDoMh2S3dJSeRVs6r2VaZ57Ghise9ATIDoGxCqa1/Y8PSOveHkbGaqK1lUvTQR/Kdb0i1Li/1da7rhQQCnVqZq/kWEK4mpqFiuqsI53iMM5RIAp/bpaEKxzUUOhZGoqkJF16jiRUBeJcVqEGcBjSp0DIMnOKBruyO2VOLjRPwrEMq3ci7y7Uu9/HrVuhXnPrX4qZ06BmrIr7zKGRsdqjirbUHTX3bmGu2L7n0FwCcrUoknmfiHSkqliCuIzqo+tfqXeSHpN/KeSUZEl6jI7Y6CeyNR/G/JTUtW91bBT/zSiTH8YlM8b8ap1YeS0hfUlzDEZAJEXoDQKa0LG9t25rmb0k1PTTnxxFljRq65yjk+q1jhUFFwxE2C0jcAnPtm1bGqM6pGScbd5BwfUrSo5uplFxN9rGVhww7tVpuqHdGhmYtLrQ/e6z3alZm9s0uvW9MN11SmEq8T+AYQlRcTHsqnYs2O19Uc0z6/4T/92r6ZQCCIyNMKvZ2J7hTOPtIpna/1tvR1ampqdPzr42Xbolp9AZh+BIXbsiPZNCqTi1vTjRftSqcxtIU1txY6BPTsnRXVnrSlmy6pSCXLnePvFN34VcGOx0iIzwD4Tn9VLlUNRfTPYPp/rX9pKErgFv9i8Wa9LXv6Ogc8ohRxgOoaBZ3aurChbVfe4anFi7trL6w9p3NpZiw7nl20fb0CjE/FP1xzVfstO/b6+jymenY8Iqvc75zjo0rKVQVEvX6xeWHj34r5SZd2n+ECd2gp3rCIPKFh5rRd3c+iNd20qDKV+Bqx+3UJcWPW0F+AC1HfLztlbQzt6SOq/icUlUUtN7as3dHPtrXPQDwej/BB0cuJ+auq0uuoF4SMqJ7blm781S47QUNZV/OGv7IvJ4+GL49e5EP/D3bFmyYXeNcz+mNVVj7VY6movL91fsPHihXVrWJKp8w8iAmpkpbWEsGLXtCabmjsi3epn1sfZuHOEe+fJqaibcuOR1FEznpT6tiq6OXOcaqk4TkzvPrvty0sboInkUqUCeFLJc0lCrJe8fm+CpG0ppt+IyLpYuu9eAExvTv+6MzK/hiFEijrvf6Q1oYzW9NN1xYjqtui5oM1I/mg2HXs+KvaW+I/EwBdA9Ez2ubvuqgOaY81t3uTLI1l+OK+vG59fX1YlZp5nnjfBMLIYgYDKgpidwCydByAW/p06O/ln0D48fZd3MqQAn86sxtZrEDkhpn+roNov9+1o6nP7PtgesmKirqaC0iRRpFJPyoKAj4ST8UvG8jt7SrnJL9GTF8tSVQDhmT9L9sXNP+o2N94oXdzQO8sdoFGfp36Dfenm+7q2zYVflcleC+IRhcTEmDmQMV/AkBzX4oqoGvEy6faFjbfvKvXm55K7JMlXMeOjuttXiEfsnlR4D/Wnm7JhTVSKVe7fDkBwIQJE/QxPOZGYdTGnXWyXVlyo91m2skZDnzW027gsRJI6ZKG2xrW9fWVW9JLlirwp8IkUZHOHUQxqy9F1Xt/lyBTt6v7w05NTY2qIlVSypOKZ+Ifpvth56kDdZ9bRGVJsfZVVTDzAYzIcQNVuyrmVJ8GxmWl2Cwvqgs7aO15pRU2nVF0zi8B4qVDPF3e1+/cOq/1v6q4nosdTYgChA9M/9D0MX2kqgC004d0el+I6tRU7YgIaKFzfNy2JmsVCogwKc+tSCWbKlLJpgq80NYxIdPeMT7T9oy+0F6OUfeHSg8WPlQWfUgz/Ih286OFT6i0FBG3rPAZksKaiy/5x2VD96J+GwLC/0ZEuopNpM7tT4qjp6ZqR/RFr+29PMOhfLwvPLSRGHkYoFOLTRFiZsCj6X2HHl/fH7ZNp9MeSr/SEhudgj48EPUrPrv6GGK+mkBBsdMX+fScJULZT29vP9Gt7vWR+J4KOa6ksoH+vf3mxsf7491DkWvES3exdZ6Z9gliw2r6xlWCiOLb7Tc3/K0vrheEmXIAb9vuiEMBYp7E7I5i5ur853BmmsaOprPj6cz8Tnb09o0fpilEvD8x71f4MNNEIh5f+AxNYc3FYOa17yDZete81palUBTvVYmCCPuXh5lD+6LjgOq1LYtaXuyLdxHwe5xzQSk1HEQ3zp07t9+Wvyhl/i4iLxbrqeU8Rz3q+DOPH96fdasqVTWVmW8kopElLgBYRqH/SKkdIWeiCWaeUOy98t+7qb/e/4EFzY+oanOx9Z6IwErv7RNnSeW5AHp1nzlHgVNg6+03e7Npbq/hwkd3/NHtf4aksIr3IUNu7/f7QG8rcfjOFGi8jzqP7j4TMehRJbkNXjrZ+3/1p23b0+1rCLiLShh2Emj/td1rD+k3T3XWUXsrgnnseFJJCwC8vKyEup3qCElri+1ccmcryXIJYvf2Y4RNQbij+JEaAEVNKpVyu35rZMbsNWa3OItr6O3HygRV/G9Y+bDH+t84fol4yZayrloVR/SJGKpSX1ynNlU7AkrvLFoocsH8x/d3+/+v/0tTS5p8YcdOQYf3QQMOx4fj/ZbxOHbhjezoXSXmqq4VkTPa5jc+upM9aGWx4YZ8knxz+5/rX+/PUgmAxeIlLLbCgzDlKffSxF2v86CutV3Ux4rhem5EM1CfIZcVkH/wBwbiULoxsTFPrtqw/qVil5fmluXRoNrybn2Q2ZdD3VtLsC8g7ekBOC6FRR/w8CFR8bHMvhBWANmurq6N71dbWxt0IPNbDvjYUnJVFbpeBGe1L2y+e6c85NR7Ris6ppS2T4V2VKWSxwlp/zhFIRCKjgJhHTOP3dGz5VINeUzU00EAXh5MdT+SjYlGOl8TVa86sI7wkEy3ItGHB+I+d95wZ0flnORTRDRZi2j5+e/sk0glyprSTV2DYkgS6mRijpWyoYcSBsS+w8Jhz3dGupcT0SRF0THGt/V55zMhc0ng+PRS0qqICCr6aoT0jp1ufLxukgiPL/bdc89Hp4HoNAb1qyKUspUkM5F4nQJgyWDSidbp/1512JMzZw7PhjTQ9x6aeaxETw7cvbT4IbECCozz8KOxg/XKA4WC9ufcXgrFChcCdgOywqn+1vq1FanEy0SYVFS+sCpANKm2tjaor68P++IZKlPJLxPT+aVuwJPfJ2JKNpSvAfjhztxbQp5EjqKl7qw2GPbO3dJ7h+jkQacTcyGPYMmqN8WhGWqaKiLwrAM45KAXiw7kQwHocEVk9OCp9FrSSQfiRUL1rw1UcQJ4regczpyejF0/Yf0uZwbU19eHlanELCK6YmdXhKsomPG1ylNnvn0ny2avYifvBjUKqNNJMIausEKRdRoMYC9Erxfd8HIzpBEHP2IQWWxcSZ4HUTeI1wygfd8oTYt0OELs2vlLqt0VqUQtEf0B2PnTGfILF8ZAwh/tdNnQ7iEkpLSHyelQFVYCAO0GMgM3zFaUtEaZiDgkGjaIOqJRxZuXQEC3C8LuASzStcW/CgBCxAVup+2rqlDQ/qS4CURjdnVYndvpiU+pSiVPKv3leRR09xASVR0OY2gKK+WUNUSI7MDdUzOlVP7cLjkaGUR9UYn5hZpxnS4zgI9YQqxUAVDgvNv5Y7IVIMZE4uJzVYswMitwaamr7kiH/radm2w6iJyJQUBgJjCG2qjTO8+7KgTal/sz5yayDisPu78E4NISvDyiEmMBzKWfV9Xv3hkzfNbHrGoOYWFVwHGUBuy5lTRSSj3ODS0pO3gsRiUqCEV9uY8OzjpIgEooIhsGXb0UBRGdX31K9YLmm5ufLPJ1ivbWiQiiutKLfBUiHYNLRQIQ0eswhqaw5g4TpFiYHbhhhyhGckkrr1QUOngaPmnRu39pzo+LSRgMmPehKCUGDCghDFwwIDHgwlEgxdZNdjzWK36I3JElRdQt7SilbhHUC7K3tS9sXwNjUDMU9wqIqPoxA6ZLpczc5r6XiXisHSzGUkXxGRQKkCIGlQFMF9NxpX2dOoJI0DkQTyaqK0s5wlu8gJnmVMyufl9xQ2hdVfyKM4UqRkYQGW+yZcLa90LHTMTBxAG7n2Lfotdy5/63nst5EHkUVNJeruSYyevEAax/exU9M0+AElavzK7s16EwOwZU/0Cgk1VlQ0kxTQKD+NJpZ07b4Sy5Cl4r5XRUIop5sAmrCWt/DM8AZhw8YP4U00GluLcgfSPqXl47eAymz5eSUpSzLw2Ifad/qHYUtLhVV4WhOaCvlLLf6c6Iqni5s3tY55dzR9LQ70rZ8FxF4QKeHusa/sUd30tfFhFfrHCzY5LBuMLJ2Iqhefw19LCBuE8ilSgLgaI3ycgdw00v1F/73KCJsariWVXNAogUb19614BUvmj3fqQ0vpQZegI91V/Pkzu1QR6MxHBm6w0PdwCAhMElQDibiPYuOt4qCjh8I35qzYL2eds+ADGq0Ze7Ea4kFG8DZhwG4M/9XTbxusQRIB1FUtzk53DE2uvT9etNUoeox5rfqf+I+Nnxfs8VFciBBOxXYhL544PJXmGm6wUFlhe/oTSg0Hhf7K9ZhEgezgFHSsl8UsEj/fIsTBDR5yjrTm28oXF54d/bF937ClQvLWXpaX5F1jgOZbt7CLx76rvfUNBzJW1Lib7Z73e7I4mP145hxR0O7j9MfPd2P8x3A7hjPcJxMIa2sBLh7bImmNL/9+IadhwrLeVR2geTvR669aHVpFhW/KmoAlI69H/ZlwZiyFnSGVbiRYjD+/tDVFWxkhCe1nrLkv9u+ffy4bFrJJT7SxFX8QI4qqusS56wre/MnTtXoPpA0Z1ebkHD4fGP1O7Zn4US6eyeTsR7FbNTfn7G9qkRy4OXYQxdYYUC7HgYC53Y7/cifKCE70K8ZAXUPuhMxrqkJPsGPByBvKc/n6nqjKpRBD2uxA24XxbI0j4t4lxK1QZVfLJlfkuvx9HWX1u/QVW+C4WUeG2G6qXxs+Pl2/lS0acB5D3hCRRuqOnnKvMB4uLUngggUHNf7TZmwvpme63A6bW1tf0WI644peIgAMeW0vABfXpEeezJQWcv4F/ipTRRAE7Hhf1XP3y3O4GY9y86fp3zFhv69PhrApBLVf1KW7phu8fwtC1s/ruK3sKutIksdm4GrYp8YdsNMFgioXQUGw7In/d2en+Vy9TU1BGk+HAp2Qrq5U6T0t1BWEXBxPGOPTcc32/OKkXOYudGljhx9a+BONmg5KGd4n5Anyx2KCteQExHVj6SnNkvD3QhmIBzSskRBQAl3NKnlZ8Z4mVuW7rx6uLK2H9PRNaV8twqCgZdkO+ot6Ilfe+zSsUf3pfr6On9M1KJfgmFlWH0B8jxwcU4FLkzuPzrG6KDa4NrE9ZdG8IRMX23Pyaxqk+tngzGZ0radV9UGVg0GG3VlG7qUmBRKYLAzA5Ov9sfXmv80ZoPMFNtKWdLee9fRVe0zzwjDhji/dVt6aaLi/1NS7plqar+stSJLHK8B1zkB9v2+WheSeEAxyMd6Ly+Lpfaj9cOY9Xzi26DOTvc+ehfml+DsXsIq4iAnavhVcGX+lqzvecfs+M9SxmmqshjZeXRhsFqL8d6nXjpKnbImfNa+fiKR5Of6MvnqPxw5R7Eejmo+LpHjgBQuv2OvjlEj5ghob91j3VjvgwqbWqSsv4K8fJsqRNZxDg1nqrudYQVwi3yoRS94beIgIBPxusSR/Zl2azv3PB5DtyMYh0KFVUwXWsyuhsJa2FYROQurpydfHefNfxUzbnsqK7U848A+tNgDAMUaJ7XvAzQW0tJds9vsXdFxaxkZZ94RLW1ASLBL53jtxc9GshNCnYx/G/6aKQDFXkeWf/pxYsXl7znQOstrW+o4uJSwxhM7Ej5skQqUbbl3x5ML1kB6J+KFuv8Nn2s+E385HifZAhUzapKMPFFxR/7zRCV9g5d8x+T0d1NWHNH7w6Ho5vis6uP2eXKNSfxWZD+WEvcf1W8fzlG7rrB3xHR5eKLX6KpqiCmsRRgfsXs5IxduffU1NRox/jML9jxqaV0WuwYKnpDS7qlb7IBCCBgZestrSt32o7jMjd4L0tKmcgSL3ABH+Gh5/T6nl6u8l7eKCX1ip17F5VFr4+n4ru0t0NVqmqqRtxNRFT8nAIABf20P1fBmbC+6V4rJrDj2ypTNefsTGJ71RlVoypSNVeA+dcEClDKElAmiPLPl6SXrBjstmpb2PgAVH9f6sw2MU0mR4ur5yRP25n7Vpwy86DhGL3ABfy5UkcCEsrrzuklfVpnoMNqa2t3egev9qvbs0T4jopmS0ruFwXA36o+tXryln9rWdTyIlR/UmqIwTk+0VHs1p09dys+u/oYhfsrEx9YrLeaX/Z7H8ZmFpiE7k7CukWvrqIg0Ehi/OpZeuGflbOTJ8dPju/wXKREKjGuKpX8FDLBfc7R11SVtFRRDf2jsQx+PVRM1+3pYh/KMyVNwIiCgAnK9OeKVPLmilSitphJw+pTqydXppLfI+cb2PEHSj0JNZ+4f2HzvOZn+1ZYya0fuX6X6n7r/MZ7xOufS9pHIDfxtKcI9TphlhnW+f+8l/ZSPWFiqoXIPVWpxLmVH64s6uyp5OnJAyrrEv/HzH8npslSbDYeASLSrYpvtF/dnoXRK0Nwo2tdR6IhMY/tKYL5pa5g545T6HFcFnm8IpVcQtB2FX2O4darU9JQR8PRQURa7UFHMvH+CkWpjR4EqGqojHMbbmtYN1Ts9/CixuUVs6u/AHK3ElGklP1GAcA5niVePkyrIg9WzEncC9CDqvSSA7o8vCPn9iDFIYDWiGgNOx6jUrp9OXCQbLjwQNrvt22D1Sthf5EInUxE44q1o3gBiE6vqEtc1za/6V+blc0ND3dU1CXPEZG7iGhEKdckoonE7qcK/kpFKvk3gt7Noo/7wK/STFmIQCIBwvGq9E4hem+YxQns3J4iglKyX9gxfOivaFvY1GDyuZsIa371zatC+lMH/Aq9HFJRaMDEfAgTHQLgLGXdKAwcYRTiWCoKEdm5RuUYPpQft6U3bxxDgbaFzX+vTFV/j11wmfrSDhjI25eIeQYTzSjYUVXhyOVsy7meZ2cEdeNQM/QPd3v6fHpR2vdxzwxAozGO7fJeCC3plmeqUomfkHM/KsWOTOy8+EsTqcR9TemmzQ7GbJvf2Fo5J3EuHF2dM2Lx3rB6BREdwMznqOIcDx+SRDoQhB6KQMAjOGB2hbpfcmfH0ND/Y8Xy2A9NOnezUAABsS6s/YOoXsUBb3f4Kl4gPt8j546m3vzfd/KETg4YPpRFnVhz8VAt+NZ08+Xi5cpShp3btG/ejqq5jmpX7JuP3z2toLqHF23aDKWPa5HrjnX3Td2PylXi/eMlxUZF4JyrCBWf7bVsFjT9TkUv3pnzrVQ1X+cFBAqIaDQTjWOmUSDwzpZNrrOTh30Y+eRz9YM3+8WEdRcCZGVdZcHw8ug3JCu3c+AG1mABQ0L5TzbT+akhPiOqrVMbvybZnLiWmj7UL7Z1DPXyX4L/YFu64YmhYMSWG1vWEtP3d6ZjIqZvzzgleUDvHV/jRd7Lj5hol8pm8w1Tdr5cxOuj6t2s9kX3vmKyuTsKK4AYx1z9tfUbhDIfldD/bXueaz+I6u2xiJv90K0PrR7ypT8X0rqw8dww9BcAyBC/SdWBCiuh5G5iOaHPUqu23TlHIoj0WY98gOx7s4r8s6Rsi9yGKuMdY+42Qzbpxu+Kx5cVuoHfpLLhgOG9v0dAJ7XdvOR/Jpm7sbAWaE+3r+mOddRJKL8n7j+vi5hARCqhXFleHq1bctOSVbtTJWhf0HS5Qj+oqo9z4AbUe2XHIKWseH+FdGVO6usMgG3ouMsG2T6r++l02kP4O6XkCAMbV2SdUZVKbnP7xNYFDb+Ax8kiuowD3iojpt9slGtPKqFc1YnYSe3p+543uXyLCCuQm0ltTTee5b3/nALL2fVd5SMicMCA6hPi/ZzWdOO5g3l11a7QOr/xH+K6jxIvVyh0HQf9Gx5gxyAmeNV7vPj3ts5vOr/9jvbOIWu/hQ1tgP6hVM+SmQMFLq39eO2wbV+78d/IZo/yof4E0PX9WTbElF+UIQ+J+g+3phu/tNROBhiCwqoIiAnFfhSIbsPr+q0QaryX30G1gwNGKRMKm4mp49yBctDnJZTvs2pN28Lmm3f+HZVKeUdiAoHcQBdF+5/bX2+d33A+qUt4L7+G6hsFW/RFQy40WgCiXu8R8acNfzXy7vaFzXfv4pVdKbYFUCYdEu1r+2WAS7yX1wqdRlH1WRUu4qo6OjPbPSOr9ZbWN9rSDV8X1Rrx8nuFrs7dp/QJrm3V+dyeF7pMvf9SpJuOaks337aLJomUVC6EyO4irG9+uhXp/8TLA+p3HF3X3HLE17qlu9cUnPz5Qp+pnH3kler1o6r6QQDvYLfJjdg6iE8bHVxVQETWwksrgedJEF3U/udd3/jDka5Tr0XvfC8QUuClN6tIWtJLlgL4fMWpR13KPvshJZ4F1TgxjyZGLrsinzec6xu1pzU3jrd7irH3PoTgSYX+Q0gXtM9vbAQgffTIr4nI/cWkPCkBCl0fhIH0td0eSje9VDmn5ruqek4p6Vc+Z4Z3T/9Q7e8eurV+9fbDX02PADir4pSZl0jgZ0ExC8Dh7Hj4ZnW8mLKh/Gow1Ve96D0ONH89ov/oKw9VgWUiMrqocsk92HMTOifI7iCsdOwnju8EULYzgSpV9apUUX/tnQ/uyjNceOGFNHfbMfytmVtcg0ykEmXqdJp4rgb0cCgmK9E4qJblF42HgK4h0MsEPK7Q9iBC9zfe1Phcn4f1Lizer7gQF2Lu3Lm6sb4NAuKpI/d3JEcoUAnFOxV6AEDjoVpORLFNjRohgC4irAbwCqD/FcL9xNQyPBZd1k+hFMKFFxL6oQ7tFDux1WL8jrhrP/lkj7lzS30uqj6leoo6rlCgSqGHEmg/BcZBUU6Ud54UqtAMiDoIWA7Q/0D6EIDWIIsHGvsjtW1ntpzsz3J5iwnrgFJbWxtgcq6yrehcIbaJxM7bcf2E9cMjiIzIMm+MD0pWw0DC9eWjyzt213j0YGdqKhUdhRdGZOFGgDU3vO4GYsPQFbpw/QGZAzrS6T5eeGG8tYXVMIzdpHP/1PHvCkDv8L6EPsI5EHTd0fvV/Gtu6aODogmseAzDGIo4xcddNPh6KVlAxIQw659bunTp2wH022jVhNUwjKGJIiws0S1aWJUAoLu/H42tdAzDMExYDcMwTFgNwzBMWA3DMAY7RDpYH82E1TCMoYlgmAmrYRhGH6KQ2GB9NhNWwzCGaCgAFgowDMN4q2DCahiGYcJqGIZhwmoYhmHCahiGYZiwGoZhmLAahmGYsBqGYRgmrIZhGCashmEYJqyGYRiGCathGIYJq2EYRi8oxQbrLiwmrIZhDE1IB+1hqCashmEYJqyGYRgmrIZhGCashmEYhgmrYRiGCathGIYJq2EYhmHCahiGYcJqGIZhwmoYhmGYsBqGYZiwGoZhmLAahmGYsBqGYQxBhkEH58aBJqyGYQxNFLZtoGEYhoUCDMMwDBNWwzAME1bDMAwTVsMwDMOE1TAMw4TVMAzDhNUwDMMwYTUMwzBhNQzDMGE1DMMwYTUMwzBMWA3DMExYDcMw+gpCmQmrYRhGH6KDWL9MWA3DMExYDcMwTFgNwzBMWA3DMAwTVsMwDBNWwzAME1bDMAzDhNUwDMOE1TAMw4TVMAzDMGE1DMMwYTUMwzBhNQzDMGE1DMMYapBSuQmrYRhGH6KkZMJqGIZhoQDDMAzDhNUwDMOE1TAMw4TVMAzDMGE1DMMwYTUMwzBhNQzDMExYDcMwTFgNwzBMWA3DMExYDcMwDBNWwzDeuihsExbDMIw+hAg0DGrCahiG0afiah6rYRjGWwQTVsMwDBNWwzAME1bDMAwTVsMwDMOE1TAMw4TVMAzDhNUwDMMwYTUMwzBhNQzDMGE1DMMwTFgNwzBMWA3DMLaCQGqbsBiGYfQVqVQqUGDYIN010ITVMAzDhNUwDMOE1TAMw4TVMAzDeDOFVUW7zYyGYQwk6XQ6QzpYT7wCgl1TVRA7vPe4Txw/xYraMIyBQqERBY0iHZzaGuzCm4GImJmvHLxHehmGsTtCAMQLdLcT1jwiYqVsGIbRA5u8MgzDMGE1DMMwYTUMwzBhNQzDMExYDcMwTFgNwzBMWA3DMAwTVsMwDBNWwzAME1bDMAyjN2G1lf6GYbx10P7XvACAAIN3+y3DMIw+hdDvG5wEojgycGJeq2EYbwEiYMp0p9PprNnCMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMIztYiuuBjHxk+PlHHAZAMgE6Wq/ur2z1GskUokyj9hoAIhFfPeSm5asjn+kdg8OOwMAWLVu1aqnFj/V3RfPOzU1NTocw8cBQBYx/2B6yeuw5dJGgQvBhy+duUcE3Q4AOtCxcml6aWZ3fNXASvvNrWi1d9cyAEyYMEHT6bTv+Wcui15ATJ8FAFqlvwPw3VJvIeRSRNmfA0B3Rv49NTX1dAozi4mCgwFg7PDxc4Cn/t0XrzOMx1ST6G0gIKL+hZpP1RzZ8IeGdf1vxwu59u67GQDqjzlGMHfuNteCp1Ipt3z5cgKA+vp6PxiEfzA+U3+8S+2ztaM6kLmbKJgEBcrcyBMBNO+OTdu2DXwTqVya/OKGvbMPbdg7+9Bz8sJFW/5dgfFBJJgYRIKJChq/M/cQlWHMPIaZxyhhVH6YMoaYxxDzGIVE++yFRCOF6wIYG3aHNDB2vPOrBTtWLP3H17b33Wf1xT9t2Cv33apU8v2DoR48gxev27BX9qHOvTIPVXwkcfSQHWGdHY88qy8u6twr81DHhMxD8brEjJ5/91lPAMZtrCMekd21bZvH+iaioPHkeCoUEEhzL71em8+GtwAAE1p3LtZDqqqFGwoIUEAK/0aO+2ynH6Ie94L6AbTkRHJuaq71ysTtPyMOJuapIMD77IjBUA8ImELMUxkKL2H5UK3P7Ve3ZyvmJN/hmN+uUITqN+u0XcQpst6ras6PJdptw0SbCWvtx2uHre8Mj2LWKlIdp4p1JPQAhoX/abmxZW08Ho/ggEhV4BwhAKQrs7z1ltb/btVzpY7cPwiwP0JAJLMhkOB5CfjtOa8mXNu8sPnh+Mnx8qA8doyQTlNVYtCyrsDVP3LTklXbetjqU6sPVaWjVelgBRyBXiKihpb59zX3HHLMPH3m2Gw2+85cO+OOtoWND8RnxffmIHKsAlOIqEO8tI94fdiS+vr6sNd7pWbGPYVHQWk/AkIwLROhu9rT9z3f83tVs6qmUxAZiQCg0C9tSjetjNcljnRApShGMdMzXri+8LtEKjFFA7eXz4gAur/6fCVjTIjXJY6EKgVBgIzq/9Ad/hOx6GMAEGT9q1t5arOPfCexTyhoPyJSKL2ogqbWhfc9VqSyQxQjK2Yna5SFAWAEhj1Yn65f39sQ7394IR5AoyqOusOORx669aHV25ELWTluZXdtbW3QuWemlgI6QlVjqvSkhu6e9kX3vrKdcp4M5WNFcYjm6ujzENzTtrDxgY117JTkIUGM9/QZEQL2Va8Fkdqn8D5BECDcwE+7SPcEUhoZ5l55uIjkuhzw1ILNQaTZ6MgHH77hzo7CC1TMTibBeiSD9lKgG9BHAX9Xa7r11Z7hnOql1TMAlAEBhiF4sD5dv74yVXM4HBIQXdo6v/GeLW35rLw0g9kPCwFAtVxEAAUYdFi8LrF20zN1PvjwDQ9v8UyoYWBvBUKAnlLgnrZ0wxPbsudhJ80cWzbc1wr0UCJSUXo4ovKfpnRTV/Xs6mngYBQCoDukJx5ML1mxWVmcVl0twjNJMUmgGYAf8w53PfCXhpcLXireCI4IGJFQEACIqihUFKx0RLwu4aBKjoJw/Vp5joJN7ZRAmampqdGRGFurpDNUESHoEzos/E/r9a1v9PYuiVRiHwUf6yHvZFBUCS+L6r3t6aaWnt+bcVrNpCjRQQCQkfCNB+Y1L0ukEuOU3TEifoJ0Za9rv6P0OYsSOst8Iz0leTQF+AmIKtgxiAiqgIpARB9XyDfa5jfdXjkncRVHgi+oCFT0FfVuZtvNS/5XuM7hqZnjIwjvIXaHEAMa+vPE8/MuSgtyuip3M8nXhdw17HgGM0FFoaoQ1ac09Be0LWy+uedDTv9Q7ZhoNHMZEc4k54Yz5x5bReFDLwS6k9if2zyveRkAxOtq3u8Yf4UCKvqwqP7KMV3EQbAXkLtX/p53KmU/3Tav7YWeBSdEP1XFLBdxEaLcvUQE6vUNVf+zydj/skI8tGJOsokDriYFxMv3QDqdmOewc4Dm76WyQoUubE03/LoiVf27IIh8WrxAoZtF0wr3YsfIhuF5rLQnB/xtAPBermpLN34JAGZ8sGZSZJj+nypOcRE3rPA7FYX30gWV67tjnec9fMPDHZWpms+wo6sBwIf+H5209oPlGP0oM70NCnjV0wmYy0xvIyJ4L19tSzf+fMuKUlGXrCRFAzEF4mUVe5nWsqjlxc061LqaYx1wFwhQL48q8RyC/podH8uON9ld5BUvOrd9QdNve/5+ampqtByjvkfEn2dH45hzkSpVhYSSUej8rLrzHkwvWVGZSi50gTtlKztSTjILdgzD7FdJ+WMc8BGFetbTfS00gNw9NN6+qOn+ylNnvh3qrwRwggsc96wD4uVlFfyobUHjrwrOSGdH96MU8MEQQCDHk9JJIDoniAaxMJP9v9b5jd/YzIFJ1Y7o1MxSdryf6ubPVLgXKFeeRP7wlvktD1XOPvKdcPIzKN7jAkfEhWdSiPfrSXG9R+Zb7en2NZuV2yk1sznAZcQ0hYhA+fYm3rcBfJaqXMmOjwEBEvozWtNNNwFA/MM1B7sIrlTS97nAuc3ageirInpZW7rx5zNTM8d3q3+CHY/d9rsQVGS9kNaS0kJmmqyiosCXCTiNAzczpzcKqEJEn1H1X21LN9/WM45euXTx+SB3LjNNZLepbvjQeyhupdB/pVAn46nq84JI8BMo4LMyH6LXcEC/YecO9qFfk0XX2x5MP7iiX2OsFalELQK6nZgrCASfCZ/OZsLFYTZcqqpgpkMYnK6cnTxZNmS/4UPfTkRgx3uT81fV1tZu9HwjGv6UXU5UJev/1jK16edwOc9YRaHAZAHfykwzfOiXht3ZVh/61dDckIid+3M8lTypcL1pZ04bHo1m5rvAfRZEw30YhmF3eH+YyTaEYbiOHTM5OkGUF1ekat7R0xvLDzkODQL3G1WMCrPhUp8JXy40MOfc8ZDgj1NTU6OFTiEE7mDn6thxJMz6lWF3+K9sJtvoQ+9BtAcHwQ+f1Rcu28rzEwFIL2Tn5qjI8z6bfdyHPpOraDSeCL+M19UcC+W1ItItIhtUNdx0CfUisiH/6SZQpredzpOzkhOCmNzBzp3OjoeFWf9qNpP9Z5gJ68MwXE+EMhcJzo52l/9fMd0qe7zEwHxiyouTntmzPDd+VTGHAw6ICCD625aiuqU9lGgsQW5xgTvWe3kyzIQtPhsuz5mD9g4C95uKVPLsTe3mQi7H6F8FQfBdJhrnQx+GmWxDNpP9t8/61cQUdc6dGSBcGD87Xg7Vzl7tqJvbEYosgK7Cd6E9NjkWzRa+q6odLpAN8dSR+6v6xez4fczMBftmM9k2CQVEPMkF/MuKVOL8rb1/8ST0Qw7cV9lxDKrbs31n4d49n0l7PhN0vQ9ddyKVmAKWvzPz8eyYfOjXhJlsQ9gd3i9h6IloBAfuHEJkXvzk+MZQQkWq+oMcwU0gTIECYTZcFXZnW8OsX0bMFar+NkD3V8l1TITc0DyeOnJ/jupfKeCTmdmF2XB5vo61SCgKYC/n+MrKVPKbmWimWwkdIrJBVDb0HDmqaqbHu3QS54f+WpBbXEVMMyX0T4XZ8EkJveQ6ExxIxDdU1CXftfFdHv3H5RwElxHRRPGiYSZsCTPZO302XMHMzgXuFAn49pmpmeM31lgF1CuIdDoY8zmSm7AdiMlBrjqjahQprmKmUZrrLX4llI23pRvfF0ArVHRu7mUpBtarUIYIh/xp8bpWRcGO39cxsfuLAFCZqvkEOT5TVSFenlcXfg5zIQrlQu/CjiaDMEJFZq1eN/qI1gVN1SG0UkTuBABiirLi/6amakcAQKy77KsucMeLz3nIJHRi6zvfW9mabjrSs1aL14bcdXl/gv6sEOsrmI+YAvXyO2GatnrdiiMkkp2uqpcQSH3owcTvHk6jEwAQJX9xEASH5z2T5gBa3bqg8fi2dFMNCX1YVVarKIjpvKpU8riehZQXnJfF+1MoKoeVl8dmCPQoFXk8/xzEIl8PyV2q4GlOdBpA17BjsGMQsMiJTnOi0xQ8LZuJ3kiM2OZNF8gG+K4Lghk5r0Nu9o7ibemmE1rTjceA6DgRfUO8gBQfm5maOV7Vh9vV1oCc97hBvGRUFUQ0o3NCtnIzT/TkeLmqfrjQIRH0hu1GGFTBRPuAaIoPs2dnYh0zWtONCQccoSo3EHLeCSl+lEgl9gGAvy69M+Uc5zx5kdeZ+aTWdNORbemm9zBLjffyoIggCIKjaGXk/MDT1wp2ZKI/brQj4drN7JgddpMQnw5yOZsTHmDOfRck33Si0yj0053ojJXrVj5NkCudcweqAF5kcQCtaEs3nXAg9kso6KOaE2EQ8dx4KnFY/eRjMoVYIYEcR7haQv+Qz4YXhVn/GfaycEv71E+t7yT494Hd9Nwz6UPMnPMmHb7oRKcR++nO6xEj3og+Gyqu4iDn3YqXJQqqbk03HTmZ9q0S4fer6GviBUEQnODKI1/MiWN8NJR+ClA0FxLzdzBJvHVBU/Wee4+eId6fAqLRxHyQbtEBMORy59w7VAVe9C6Fq2xLN53QOrUxyYTToehUVYBwEW2gQ+FdLTicTuIrFHh6ozcN/4ncu4TTlbkmEuClQviRcg3mAR/6Y6UrMz2ATleRkxW6Ago450YC+pn8aPoEdnxerv7JOhWZ05puTLamm97LrFXi5d583Ti8G/77W9VFdu8goliYCf8UZv0XFPSlYRi2vl9jrNLtZrOjd+WH/Q+0ppu+UPhjU7qpC8BFFXMSCefcCezcAfBc17LovmsqU9XfJA5+paIgxUVVdYmVovJjAkNVQwnpnPabNw2xe8RVIKrfaU033lL4twfSTU8lUolPesEDIIxnx4eWafboKSee+G/F6s/kvEFAvH6rfWHTv7GwMfe7ec3LZpxafVag3AyPkQBOqKhLvosgGaAw7JH/TsZ+n0vP25jK1I0L8b2KxxInsePpRATxesjhqZnLRPzpIIGKdhL8p5rSLU8VnrF1YeMdlXOSP6SArgARi/fnALhrY/fLBM3i0taFjYt6vG5LZSrxAxDdqKpQwqGjy926+mvrVwBAfE7idVC+AxBa3Xxz05ObxVBTSaZNzqWfdua04bRBzwQBIrJGwuCLD6Q3xSr16cyDfGBkNUB7EPPwzmzmYA5cuP0wq0bbb258vDKVbCCmY4jIiZfTATRuLLPySA2D35bzqOQJB9Tv0BlmgmTl520Lm6/pUZ9emnbm8Z+Lda+rIOZDOMJ7hqF8GMAvSeXLgMuVs+I7bfMa/ln4XfO85mWVp9V8RkWXiEiMQJ+OBtGfNM6rXw4AVanEGz3G9G8039z85BaPs7qHTTt79FQv9fxuVd2R01XlA/kw1wpC+MmmfDw1H/q5oSKVmMHE5xGjTLM4C3PnfgWp5KZ3Dv31HYh9fumC+m033LmQFrQ8s+mZEl2bhs/6fM9nqp5dXU3Ex6tXiOpa4vDTbfNy8xr5Z/pnxZzkt4jpDyICVXx2amrqlUTBe5xzB+fF6BXn9Kzmv7S8BgCLf7G4G8CiijnJvdnRLzVfhz2QrTil4iAAs3LX0pWc9R/fODqZC2lG418q5yQP44C/TUwxL/rptoVLzt4YA04lN+ZEK+GZnu9S+/HaMVlkqFDnhcKvtS9subuHZf5eMSfxGw74e7mOl6YBIDC+QJyLK3jxP27vESpsntf8bPUp1Z8WcLtARipw+vQPTf8eK8KCwyMirwnp7Pb5TfcN2OQVkZ4MEIgAFXqkoi5ZyWC3MUVCvZDiEQAn5Iyl7wFwTWu6+TeVsxNHc8SdpkKjVXEtERVe5MftNzf+rZdZY3iRlYRwq168Kd30UkUqeScznZ6b+pDkuFErX1K4/XNDbX0twrh9y989MK95WcWcRAMHfAKBOAz9sar6iAsKr0DdvVVsSuEZIpqeH35xoGHCRd2ofPjgOTBGVdUdmSj8JEQWKnhJQsmSowiUquOp+GjqObRkbNg61hI8Id4rOSKAoqtXYxiQ+x4R8aZKqDtIfVMq7y4XT/i0qrBCXy9MAMXPjkewuqyK1V9ARAfnRxggpR1nfajmJUmuBfExqgoFZs08feb3lxQmEpVOzT0/IEA63+FuN8QgXrLs5Pot//TwDXd2xOckbw6Ivp1vzzWVqcqFAKapKES1CyKvH1FXlQh6ZON48Y4VL4HoIGLab53PzgBwbz67YmMHpKAdpRBSj07ebZYtBn+scy5QBaD6X+Vgv6q6IydvfAYfKoGfElHNh2drp6amjlAgZ0QFBHr10nR9Sd6Q9lyos0WZCfOx7HLBZgplSeu8rSeLNRK9XcLuFUw8HqADYzLyEDDVbOzwPRY3/6X5ta3bY3izl+AHTDQOAJxQVp07mh1HVQGIPC0Rt3dV3ZH79mwHEH1GvCgxERGOmnLiibGnFi/unpqaGtnMvlu8Sz7dqsf93dZtk/SxXLXMRRbjH4nvoVlU5ePznsDPb1k3Qh8qAc8QMM0xj6OgPA7S7KbOThrb0wMnqrmsAMpNYogIyNHHmOljm3/BIe/256qv17cXZiwDoa+EXt9FTO/KDY8A8fL31evG/GCbVVrwwmSavKK1t+wh1Ud7fHUfAU1xzKQKEOlzTemmldvwjpYWhD8fp320558LCcvbbGBMAtWDC3FgMA4ljjT2/HIEESjlf8SAiu5L3bG9NCa+xwQIbbvt7NoqNwVxU7qxC8BGjzhRlzgyBH8Aq/QEJjmcowF8poeDyiWks2TldoF/hYj3dsz7dHX7EwH8OZFKjPOq789X7G4QzSsixQsKeZ2VX9jGFx7dqCiKSUzRKQIZkQszoIyDYKGjLSuqQ64eABwwRDJTCsLah/lvb8975SCmI5lps5nmgIONz0C5CZkDynmPsSRZKRTvlmK964+EKT1q69Je05zeXr+yYmniORDGMzMF0INVdd9NcVvq9XetmLyiEi++CMK4Hkr+driCDbhySxtsbAe00VHaf3TZinEAXin53XppL4U4byFejjCyNwHjVBQAHDNd52jz9Nee5cKO4VXeAaXwTU23UkUZ0cZZyPtFZAVoSxEgIRWBI0D5KVx0EQHQxkWNyytnJ+4h596lyHlJAr3/qcWLu7fV4AjSseUKo01/5/WbPRtoeKFOKdC1nfzJjh7/PXynKjBprOBVq8rzPvTLtrKDQgnwOR+VQke+24MHfFlw5exEHZjOE1B1JOqgXuG9fz7szv6ZCB8i4kNKvWbrLa1vVM5OLKIIfT6vyWcC+LOAjiPHk4gAVWloSzftOJWLACh180jq9cA2J9SpXOhrNCrwI4gYmsvYWOfFN/U2wUAgr6qqokTKfT6jS4X6RgQRfRIi/9tmHcg1mnWc6VYN+m+dDUGHb3LmeMO2QguUoo7Co4rIMCYOejTf3tOK0mmvqUR2i1cs29gORJ4WwVPbtwG6gljQL6eeEpEqtAyAy+vTBngsERK/paPSs27Ay6vEmPhmrn8KCLoOIDAz1MsVrQub/tzbF2s+WDMSACQmYWHJYGUqcSKIPiW5CZ2c10t0XuXs5H9aFzb+u5d4HpQwJn52PNJ+dftWjU5U9+C8vVSxgQirCr8DdBQuvJB7W66oIuPIucI9VguJOpTqOOTEmZigIe5pW9D00d6+Ne3MacNHrB3Bq2MRXXprfUfFnOSALrKomJO4jJy7IB/P2+Az4c2iNK874u595KYlq6rmJN8NJmx3RnobCPQ6iJxNoABEx1R/qHqyiM4uBIaI6IaiZlRz2QXDO9d1DQOw1ZJWZRnD5ArZAx0CXcmaH9CLLpdx2ZN6qx9TU1OjYzJjYgAQWRPt6mvbqurqQh2A4Oa2BY3f7O17U1O1I8Z0Z2n9qPUytnys7+zMuP4qbwWtwqYww+jevlNbWxt0aGZsbhqcAMZagNZvEiieuI3fDetAZstrrtnYDhR3tKWbvtp7Ozh++Ii1Hbw6FtWlf6nvl4kgVSUJdR1HKEtEMSVdK8jM2TKlrBAOi70aG5arG8O6ChPqbxYM4FEU8iBZq3tvzMlPhuW0LCyjxz1oLgBUzaraF8BviHiYqnj1eh/lYrVlYFw947SaSb0Gk5QOoNfL9ut9SK8VPbqr/zqnj4v3Pj/vflDVU3dP6u1nqjhiY3NXegwlDgJUlFlo2cY8PKLpvaUcVX+k+m3R7uGPhGW0rBzZvx7w8doYSPsmdWMHq1CItLv6tOppxPwNQCHerwDhhJb5jWe0pRtuKyysUNr5kMNBvH+bqrbm8x3LfYy+DcLRudlov8KFuKPIBgGA9nCIvWMbX6kqeLakeLosEjyJvKiBsE+wJpiy5Q9SqZQrx6i/h8P08WxMH+vcM3xH73YqPpWm57Az/+PHNnUMUtXraCFVmRxO2WVhGT0e7R5+/UuvvaR9mbuz5fMrdOnGtkM4orffrJ8QTgLpgbmQng/BweMKfaIw1INKTW+/W7vnhrcTsH9+mA04JSJstIGC4r397ohUdTzWvX5ZOIweH47M/FQq5XamThdRPo4j4ctQXZ7v2PdwNOzQXoVsZSQdDqPHszF9vGtc+E4Ivambu7AIL+whKHPis+J79/zClBOnxIjwBSLsQ0yTlKgZClLnfsXOHUC5hOwbKebfLyqN+fzWg5zXq7Y0uKqCAx5Ozn9uK/Gelawk0DH5NCIBoX7/cP//qdKj+WuO1kzmM1tV9Lrke5k5rppLjlfifwcclLQGmQmRSJZaxOtr+cr9zvUTMydv+T0f0meDwB3IjvYB9Mnnrq3fAKWdFjLtmacq2183rQLvPU9nplymiqBpyxU9+XzcnV4SmU6nPQHXbUxOVzoLRJOICAr6a+OixuVF29QxM2grryF5SvIAJTqlkOIjQv/KTZJRQ66c3TCvvFU5P4PnT2Lm48jxJEA7Hfv/9RYvV9XYjlzAHt/lzT1p+rd46cynnSUrUzXJrX/vvuQc78uOJhHwyFOLn+re5VjQduoBge8Un0/xYqqqqEu8Z6vQCvzZzrmRRAQCPdx+SMMzKvpvCUVEBeT46MpU4sStfsd8ATuO9rw3BXKP935dLmUOlZV1yaO39sb4iy5w+3FAkwA8ulloL/8uRATeIt7sIq4koVVSbk+3r1Gi/xATmNmJyFbaccTsmqPAdBI5TAJAHPj/9nWsu+RQwJqOUYvHjFx9F7vgOIjsQ0HkL1V1R17A6v/rxe0N9t8lpjgUkDBsbVvQdHOFJr7OAX8gP+n1VHeI8x9Ot6ytmJ38gpDUE2ikczzrmeyL5wK4YrPhphcQ0fkVdYkNUL6Rw7BDmKqI9XJiHp4b4uo/D9R970+n074iVX0FiK9XUYDwzcpUTSaEzHMc6SbJHgXFFSBE2DEkDP/Unr7v+XhdzbtcSfUaruG2hnWVqeQvmfli8cIE/XVlKhENQrrbw0c1cGeC8KX8ypNOEK7c5V6NcsPk3ISZvq8ilfw6gNeYHXzWt4I2Jb5TLoD9cm5iQQFCVTx15PEumm3mDAdZ4ukE/QaBDtVcSGYnnyp2i4TdPyDmPQuTCyKqJLihpLCCF7Bzp1akkisV+mtx/IYTmRoClzHRXrk0N3k4Uz5icW7OhK6AyAkEcqT0xYo5iRXIhjeE0WEbHHwtAT/f6E0qrmhasCkzgaDdQD4ZHDSnYk7ifyB6g9lB0d282Uw6aTco18kr0bmVqZpyhW4ARDkIb5OM+4Nz/EURGaai11fMrv6SRsPWQIIRInwOEZ0molDxyymUa2pra4NO7LJzlO3R2X6zck5iTyXqJlKJbMBtYRR/4oA/J14iBPpTVSp5vnB2SSBBzBOdpsD5yGeCKOH/MBfSfmFza+XSxO3sgg+plyiA6ytSicshdJ86GcNwn2SmOd77kJCfvScEzX9pfq1yTvJ3HPC5IhJT1T9Vzk5+WaLRpkA2jFDhs5TwURGFiLzB8L8uPPv45eOlc0J+9pQA9bioIpW8Ifd+lOnYIA0ESKkdDoF+Jl5TRCgjwkcrU8mXmeXqkMP18EEVq/6CiAICAYKfNy1s6oqnEgHjzdNWfmrx4m7K+nMk9E8yM5xzR4v6JSFoqbJvZ+dOI2aI6EsI3CerZtfMZOIf5Xv8rEA+/3Dek2lb2PiAqF6Yi88o2NGPquqqEgzdsCluow+p6pJINPo9gj6kgXuUA7eQ2B1MzJBQniUOv1LoBdvSzTeKlyvzPVaUHf0wUHoIPnyUmG9kx3vnli6Gd2UzsW/naycVUr+AbVmXuPAdlZzn4qBX+KxfSI7hmPci4nmhw2MauEfZ8aXMHFXVUIFz2+Y3PloYrmy8Vy8rpUSEiIh7exYV3CNeBEwg5vFB4P4vCNx1QYSvI6cfgKfsxmcEyhxrg/e+jQMGMU1kyD8k4x4LgWUB012kOFZU1hHnn0eUtIctCuldBLge777ZM7em618F4fZCAlO+zJaVj4juMF1l470cQ4FnxMvtkVhwDgEPBF4eI9CdzBzPT4y8DtDnCmvz2+c3/EdEvw1A2VHEBe4SikYeiWi41BGl2fGkXG6s/2P5itifNrcj3Z3rbAjEvHcQCX5WsCPUnbBFud9ZeDfnOO4CvjoI3HXOBddrJjgo2k3f9qH/T34RwcHk+G8cRpZ6oYfZ8TfIEUG1g4g+27Ko5UVMRoDt2LNI/k0ut/KNHVe7SHBNEHHXMbsbJCaTEfMX+NDfzY7BzPuA6SaSyCMe9BAz/4CZo8QEH8rlbfMb5xUmtATuyxL6h/OLJ/Z0gbucHd0XuOCvQdTNES/XQamNePNJHlrvL/Kh/yczwzEfSI5u57B7qRd6mBx/hx07Vd0A0Bda0pvycfP7btTnlnMDLuBjg8D9PogE1xH0Rk8bJha82Vx72dpWih71Nd9eWtMND0LxFVUN2TGz4295oYc5jCxl8F/Z8UHMDB+GC8tHRH9emOnbWCZEAz6LxfkZ4f9qJvtu7/3vRSS3RMzxRGaOicga7/18Vbw70qnPK+mlANao6goRuaw93XxnzwuOWB77hXi5GcAKAGtV3VxRTMhlbBGIaFUW7pQwE/4BoG5iGp1f079WvCwIocdvkaunrenGc30on1KRB8VLlgMudwGPyocNnvWhv7gTsQ89dGt9bvKBXLeorBCVFar6+jbefVXhO+DcxFVTuqlrj/Wjz5DQf1O8PK1QcMB7suPRIpIRL03wmNWWbry6x+O9vvFevWQukKOsqr4mKisALA+ikY3DobaFjQ2iejZEHlSR5T4MV/gwXBGG4QqA1hB0feHaBKxvSjd1KdxsCf18FV0FAjHTvkRULl5uF+jRAN2nQO69QBmAujbZojAZmPu7qKxg5l5yCelPIhJunMiBzqu/tn7DjmNinMndR1YQ9CVB5qPhhuwVTLyKmMfkhadTvf6DVE5sTTdsltLWvqDpcgl9SkRbRCTDjkdz4PbMrwh80nt/bvnrsbO33DindWHjXSr+84A+spUdFWt7frc71vGLMBv+VEWfFu9XFL7rvX9VIL7htoZ1FPUf9t5fol5eIBDYufHOuZEi0iVe71Lo+1vm5xa4lI0qU/SwJ4FLdl87KfYTnw1/Duj/ej6TeP+KRMW33NiyNjKSPiih/FBEn8uveBzNjsvFS1ZU71cvH2tb2HhBz8nF9vR9z1PUHyXe/0hEnxIv6xW6Xr085ruz55Uvj36aCNkt1a1lccvaDkRn+9BfLCLPK7DJBl42iJe7SfWktnTDVql3sYj7fpgNf6fAsz3fBarPApxRwvKN7Q5bx0GVdcOmv+P1TR1+wzVQ/YCILBEvG5xzI9m58QSCeH3Wh/Ld8uWxMzfWU6WOjWWSr/cDyVY9RnzWUXsHUXmHl3AUiDp9SE8+cHPjc4V46+iyvcf5IDdE3dYO8VNTU6Ojw9FjugKnMZdl8e597OiPyG1Ucl/rgsaZQG5NMsEfiABwos81z2t+dnsPOzU1NTrSjTsEIvt6iHOsyzd0bXhiy12WpqamRqMYN1pCT+WBhr3lv8ZT8dHZMBobDkADXbdl0nvVGVWjyNOhXmgCyIVEeH6yn/T4lqlih500cyxFfQQAxo6Krt1SgGpra4M1E/xYAIhku6X1ltaVW9osHo9H8PYRo7MbMsyB07LQkwa6rjPWycM7hg8HgGgQ7ey561TVrKp9JeJy8XAKXm2bd+8LQG5nr7VdPsKBUze2a/WI7hFu1drMKACIBJnu9nT72kQqMXYDAiehpzBYs3rLXdynnDglNnbEnk+QcweISpeGOKL95sbHd1SZ4mfHI35V2RgAGIbQF+wen3XU3i7qp0ARKPFLrfOW/Hd716mtrQ06JmYOUdD+BHHqdXks65Y23Lb9TbOnpqZGy4Lxo3yYSy0u2LG3BQ3Tzpw2nLtHbRaPHr3creop2olUYlyWcCgB4wiUUaVne9lFigr2BAA3tmt1bxkNxTDtzOOHc3fXdp/psJNmjh1WLocoyZ4K9lB5oQtrn9iyDGecVjMpqjQdhFAlu3zl2pWPjxu59yTijL6xZuwrTy1e3I1UylXoi8vY0dvyaTnvbkk33rVZ/T595thYtz8UTvcgRVYCerb9z41P7Cg7pOaDNSM7YzxsY3w16NIRL49Y3Tm2c3Q2EuNt2WrKiSfGysvWjAYAzbjsI3/darc7rj61+h0+xGQ4Ckj59UwmsqzgVPUouzIKaWTHpnq/5k0V1n5JEapLnuaY/7ylsBqDh/jZ8QiASPjaiGg0mvkYCD9h5kC83NmabjwBdsTKkKIyVXM4ER4gx5DQr1fB0T23XQSAilTNmcz4EwCnXl5G6Ke13tL7dn1GiZNXA3ETVTtba9CzMvIpF7hvcqQ7CqJJhY1SlPQXJqpDj9Z0w4MVqepfBMRfIuYRCvl7RSp5Lak+DNKIgo8kwhkEciBAiC5pM1EdWsJKQMCOC9vrDTOzD0Z0fBBxkyWXGA7xfgMEl7elm2432wxNVq8be/7YEau7wfS5IOImEtM3enaRub1cZbl6ubRtQdMvzWJDTFgBavFezoUAEH3ZzD4IKwLh72HWrxfxIOUOIt/Skm55yCwzdMkvLT8/fkry94AcD9XpCowjQImwHMRt2p35Z9utbS+YtQzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMIz+5f8DPKYtsjVCpA0AAAAASUVORK5CYII=" alt="Broker² – exponentially better together"&gt;&lt;small&gt;Verico Paragon&lt;br&gt;BrokerSquared&lt;/small&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="top-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="agent" id="agentCard"&gt;&lt;img id="agentPhoto" alt="" hidden=""&gt;&lt;div class="who"&gt;&lt;b id="agentName"&gt;Tyler Johnson&lt;/b&gt;&lt;span id="agentTitle"&gt;Mortgage Expert&lt;/span&gt;&lt;span id="agentPhone"&gt;7786865700&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="date-pill"&gt;&lt;span class="dot" aria-hidden="true"&gt;&lt;/span&gt;&lt;span id="ndPill"&gt;Next Bank of Canada decision: Oct 28, 2026&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="hero"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="eyebrow"&gt;Variable-rate check-up&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Your variable mortgage and the &lt;span class="nd-long"&gt;October 28&lt;/span&gt; rate decision&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Built for clients with a variable or adjustable-rate mortgage. Enter three numbers from your latest statement to see where you stand today, what a Bank of Canada change would do, and how your two options compare.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="options"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="opt"&gt;&lt;b&gt;Option A: Lock in&lt;/b&gt;Convert to a fixed rate. Your payment is set for the term, whatever prime does.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="opt"&gt;&lt;b&gt;Option B: Stay variable, pay like fixed&lt;/b&gt;Keep your variable rate but raise your payment to match the fixed payment, so you stay on course to pay off at least as fast.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="for-pill"&gt;On a fixed-rate mortgage? This tool isn't set up for you. &lt;span id="fixedTalk"&gt;Talk to Tyler Johnson directly.&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;form class="panel inputs" id="form" autocomplete="off"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Your mortgage today&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="sub"&gt;Example figures are filled in. Replace them with yours.&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="lender"&gt;Your lender&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;select id="lender"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;optgroup label="Banks"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly" selected=""&gt;TD&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;BMO&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="pf"&gt;RBC&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;CIBC&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="semi"&gt;Scotiabank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;Manulife Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;National Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Desjardins&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Tangerine&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Simplii Financial&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Equitable Bank / EQ Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;B2B Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Bridgewater Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Home Trust&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;ICICI Bank Canada&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/optgroup&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;optgroup label="Mortgage lenders (through brokers)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;First National&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;MCAP&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="semi"&gt;RFA&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;CMLS&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Merix Financial&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Strive&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Lendwise&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Haventree Bank&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Marathon Mortgage&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Community Trust&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/optgroup&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;optgroup label="BC credit unions"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;Vancity&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;Coast Capital Savings&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="monthly"&gt;Prospera Credit Union&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;BlueShore Financial&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;First West (Envision, Island Savings, Valley First)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Westminster Savings&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;G&amp;amp;F Financial Group&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Interior Savings&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Khalsa Credit Union&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Sunshine Coast Credit Union&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Integris Credit Union&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/optgroup&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="check"&gt;Other lender&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="comp" id="compNote"&gt;We haven't confirmed how &lt;b&gt;First National&lt;/b&gt; compounds variable-rate interest, so we've assumed semi-annual. Check your mortgage documents and change it below if it's different.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="comp"&gt;Interest compounding on your variable rate&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;select id="comp"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="12"&gt;Monthly&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="pf"&gt;Every payment period&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="2" selected=""&gt;Semi-annual (twice a year)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span style="font-size:13px;font-weight:600"&gt;What happens to your payment when prime changes?&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="seg" role="radiogroup" aria-label="Mortgage type"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;&lt;input type="radio" name="type" id="typeAdj" value="adj" checked=""&gt;Adjustable rate&lt;small&gt;My payment goes up or down with prime&lt;/small&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;&lt;input type="radio" name="type" id="typeVar" value="var"&gt;Variable rate&lt;small&gt;My payment stays the same&lt;/small&gt;&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="bal"&gt;Current mortgage balance&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;span&gt;$&lt;/span&gt;&lt;input id="bal" inputmode="decimal" value="520,000"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="rate"&gt;Current variable interest rate&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;input id="rate" inputmode="decimal" value="3.95" style="padding-left:14px"&gt;&lt;span&gt;%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="pay"&gt;Current payment&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="hint"&gt;Principal and interest only. Leave out property tax or insurance if your lender collects them with your payment.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;span&gt;$&lt;/span&gt;&lt;input id="pay" inputmode="decimal" value="2,730"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="freq"&gt;How often you pay&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="affix"&gt;&lt;select id="freq"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="12" selected=""&gt;Monthly&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="24"&gt;Semi-monthly (twice a month)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="26"&gt;Bi-weekly or accelerated bi-weekly&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value="52"&gt;Weekly or accelerated weekly&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;dl class="derived" id="derived"&gt;&lt;div class="kv"&gt;&lt;dt&gt;Time left to pay off&lt;/dt&gt;&lt;dd class="num"&gt;24 yrs 10 mo&lt;/dd&gt;&lt;/div&gt;&lt;div class="kv"&gt;&lt;dt&gt;Interest in this month&lt;/dt&gt;&lt;dd class="num"&gt;$1,698&lt;/dd&gt;&lt;/div&gt;&lt;div class="kv"&gt;&lt;dt&gt;Principal in this month&lt;/dt&gt;&lt;dd class="num"&gt;$1,032&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="error" id="err" hidden=""&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="stack" id="results" style="opacity: 1;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;If the Bank of Canada changes rates&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="sub"&gt;Your variable rate moves with prime. Pick a change, or type a negative number to see a cut.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="sub" style="margin-top:-10px"&gt;&lt;b style="color:var(--ink)"&gt;A rate increase is not guaranteed.&lt;/b&gt; The Bank of Canada could also hold or cut. If it holds, nothing on this page changes for the client.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="chips" role="group" aria-label="Rate change"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="chip" data-bump="0" aria-pressed="false"&gt;Hold&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="chip" data-bump="0.25" aria-pressed="false"&gt;+0.25%&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="chip" data-bump="0.50" aria-pressed="true"&gt;+0.50%&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="chip" data-bump="0.75" aria-pressed="false"&gt;+0.75%&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="chip" data-bump="1.00" aria-pressed="false"&gt;+1.00%&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="custom"&gt;&lt;label for="bump"&gt;Other&lt;/label&gt;&lt;span class="affix"&gt;&lt;input id="bump" inputmode="decimal" value="0.25"&gt;&lt;span&gt;%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="big"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;div class="label" id="vLabel"&gt;New payment&lt;/div&gt;&lt;div class="val num" id="vNew"&gt;$2,872&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;span class="delta num up" id="vDelta"&gt;+$142 per month&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tiles"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;New variable rate&lt;/div&gt;&lt;div class="v num" id="vNewRate"&gt;4.45%&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t" id="vT2"&gt;Extra per month&lt;/div&gt;&lt;div class="v num" id="vMonth"&gt;+$142&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t" id="vT3"&gt;Extra per year&lt;/div&gt;&lt;div class="v num" id="vYear"&gt;+$1,707&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="note" id="staticNote"&gt;&lt;b&gt;Adjustable rate: your payment follows prime&lt;/b&gt;Your lender resets your payment so your payoff time stays at about 24 yrs 10 mo.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel lock"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="lock-head"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Option A: lock into a fixed rate&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="sub"&gt;Pick a term to load an estimated rate, or type any rate.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="tag"&gt;Payment set for the term&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="terms" role="group" aria-label="Fixed term"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="term" data-term="3" aria-pressed="false"&gt;&lt;b&gt;3-year fixed&lt;/b&gt;&lt;span id="t3"&gt;about 4.39%&lt;/span&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="term" data-term="5" aria-pressed="true"&gt;&lt;b&gt;5-year fixed&lt;/b&gt;&lt;span id="t5"&gt;about 4.59%&lt;/span&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="rate-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="affix"&gt;&lt;input id="lock" inputmode="decimal" value="4.59" aria-label="Fixed rate"&gt;&lt;span&gt;%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="slider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="range" id="lockRange" min="3.5" max="7" step="0.01" value="4.59" aria-label="Fixed rate slider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="ends"&gt;&lt;span&gt;3.50%&lt;/span&gt;&lt;span&gt;7.00%&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="disc" id="rateDisc"&gt;These rates are estimates based on what was available in the market as of October 2, 2026. They are not a quote, and a lender's lock-in rate may be different. Rates are subject to change without notice.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="big"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;div class="label"&gt;Fixed payment&lt;/div&gt;&lt;div class="val num" id="lNew"&gt;$2,913&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;span class="delta num up" id="lDelta"&gt;+$183 per month&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tiles"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;vs. today, per month&lt;/div&gt;&lt;div class="v num" id="lMonth"&gt;+$183&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;vs. variable after change&lt;/div&gt;&lt;div class="v num" id="lVsVar"&gt;+$40/mo&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Interest in first payment&lt;/div&gt;&lt;div class="v num" id="lInt"&gt;$1,970&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="table-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Fixed rate&lt;/th&gt;&lt;th&gt;Payment&lt;/th&gt;&lt;th&gt;Change vs. today&lt;/th&gt;&lt;th&gt;Interest, &lt;span class="hz"&gt;5 yrs&lt;/span&gt;&lt;/th&gt;&lt;th&gt;Balance after &lt;span class="hz"&gt;5 yrs&lt;/span&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody id="ladder"&gt;&lt;tr class="row" data-rate="4.00" tabindex="0"&gt;&lt;td&gt;4.00%&lt;/td&gt;&lt;td&gt;$2,744&lt;/td&gt;&lt;td class="up"&gt;+$14&lt;/td&gt;&lt;td&gt;$96,744&lt;/td&gt;&lt;td&gt;$452,100&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="4.25" tabindex="0"&gt;&lt;td&gt;4.25%&lt;/td&gt;&lt;td&gt;$2,815&lt;/td&gt;&lt;td class="up"&gt;+$85&lt;/td&gt;&lt;td&gt;$102,947&lt;/td&gt;&lt;td&gt;$454,054&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row sel" data-rate="4.50" tabindex="0"&gt;&lt;td&gt;4.50%&lt;/td&gt;&lt;td&gt;$2,887&lt;/td&gt;&lt;td class="up"&gt;+$157&lt;/td&gt;&lt;td&gt;$109,164&lt;/td&gt;&lt;td&gt;$455,966&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="4.75" tabindex="0"&gt;&lt;td&gt;4.75%&lt;/td&gt;&lt;td&gt;$2,959&lt;/td&gt;&lt;td class="up"&gt;+$229&lt;/td&gt;&lt;td&gt;$115,393&lt;/td&gt;&lt;td&gt;$457,838&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="5.00" tabindex="0"&gt;&lt;td&gt;5.00%&lt;/td&gt;&lt;td&gt;$3,033&lt;/td&gt;&lt;td class="up"&gt;+$303&lt;/td&gt;&lt;td&gt;$121,633&lt;/td&gt;&lt;td&gt;$459,670&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="5.25" tabindex="0"&gt;&lt;td&gt;5.25%&lt;/td&gt;&lt;td&gt;$3,107&lt;/td&gt;&lt;td class="up"&gt;+$377&lt;/td&gt;&lt;td&gt;$127,885&lt;/td&gt;&lt;td&gt;$461,462&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="5.50" tabindex="0"&gt;&lt;td&gt;5.50%&lt;/td&gt;&lt;td&gt;$3,182&lt;/td&gt;&lt;td class="up"&gt;+$452&lt;/td&gt;&lt;td&gt;$134,145&lt;/td&gt;&lt;td&gt;$463,213&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="5.75" tabindex="0"&gt;&lt;td&gt;5.75%&lt;/td&gt;&lt;td&gt;$3,258&lt;/td&gt;&lt;td class="up"&gt;+$528&lt;/td&gt;&lt;td&gt;$140,416&lt;/td&gt;&lt;td&gt;$464,925&lt;/td&gt;&lt;/tr&gt;&lt;tr class="row" data-rate="6.00" tabindex="0"&gt;&lt;td&gt;6.00%&lt;/td&gt;&lt;td&gt;$3,335&lt;/td&gt;&lt;td class="up"&gt;+$605&lt;/td&gt;&lt;td&gt;$146,694&lt;/td&gt;&lt;td&gt;$466,597&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel pace"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="lock-head"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Option B: stay variable, pay like fixed&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="sub"&gt;Raise your variable payment to match the fixed payment at &lt;b id="pRateLbl"&gt;4.59%&lt;/b&gt;. You keep the variable rate and stay on course.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="tag ink"&gt;Stay on course&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="big"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;div class="label"&gt;Payment to set&lt;/div&gt;&lt;div class="val num" id="pPay"&gt;$2,913&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;span class="delta num up" id="pDelta"&gt;+$183 per month vs. today&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tiles"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Payoff time at &lt;span id="pAt"&gt;4.45%&lt;/span&gt;&lt;/div&gt;&lt;div class="v num" id="pYrs"&gt;24 yrs 3 mo&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Interest vs. locking in, &lt;span class="hz"&gt;5 yrs&lt;/span&gt;&lt;/div&gt;&lt;div class="v num" id="pVsInt"&gt;−$3,768&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Break-even variable rate&lt;/div&gt;&lt;div class="v num" id="pBE"&gt;4.59%&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="note" id="paceNote"&gt;&lt;b&gt;How it works&lt;/b&gt;Pay $2,913 per month and keep your variable rate. At 4.45% you'd pay off in 24 yrs 3 mo instead of 24 yrs 10 mo, and after 5 years you'd owe $3,768 less than if you locked in. As long as your variable rate stays at or below 4.59%, you stay on course to pay off at least as fast as the fixed option.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="lock-head"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Option C: switch lenders and lock in&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="sub"&gt;If another lender offers a better fixed rate, see whether it pays for the cost of breaking your variable mortgage.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="tag" style="background:var(--warn);color:var(--surface)"&gt;Shop the rate&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cgrid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;&lt;label for="sRate"&gt;Fixed rate from a new lender&lt;/label&gt;&lt;div class="affix"&gt;&lt;input id="sRate" inputmode="decimal" value="4.29"&gt;&lt;span&gt;%&lt;/span&gt;&lt;/div&gt;&lt;span class="hint"&gt;Estimate based on the lowest published rates for this term. Subject to change without notice.&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;&lt;label for="sPen"&gt;Your penalty&lt;/label&gt;&lt;div class="affix"&gt;&lt;span&gt;$&lt;/span&gt;&lt;input id="sPen" inputmode="decimal" placeholder=""&gt;&lt;/div&gt;&lt;span class="hint" id="sPenHint"&gt;About 3 months' interest at your rate: $5,135. Some lenders use prime instead, which makes it higher. Confirm with your lender.&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;&lt;label for="sCost"&gt;Other switching costs&lt;/label&gt;&lt;div class="affix"&gt;&lt;span&gt;$&lt;/span&gt;&lt;input id="sCost" inputmode="decimal" value="0"&gt;&lt;/div&gt;&lt;span class="hint"&gt;Discharge, legal or appraisal fees, if any&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="check"&gt;&lt;input type="checkbox" id="sAdd"&gt;Add the penalty and costs to the new mortgage instead of paying them up front&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="big"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;div class="label"&gt;New payment&lt;/div&gt;&lt;div class="val num" id="sPay"&gt;$2,841&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;&lt;span class="delta num down" id="sDelta"&gt;−$72 per month vs. Option A&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tiles"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Penalty and costs&lt;/div&gt;&lt;div class="v num" id="sCostT"&gt;$5,135&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Better off vs. Option A, &lt;span class="hz"&gt;5 yrs&lt;/span&gt;&lt;/div&gt;&lt;div class="v num" id="sNet" style="color: var(--down);"&gt;+$1,086&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tile"&gt;&lt;div class="t"&gt;Costs paid back after&lt;/div&gt;&lt;div class="v num" id="sBE"&gt;4.2 years&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="note" id="switchNote"&gt;&lt;b&gt;Switching comes out ahead&lt;/b&gt;Over 5 years, switching at 4.34% leaves you $1,086 better off than locking in at 4.59% with your current lender, after $5,135 in penalty and costs paid up front. The lower rate pays back those costs after about 4.2 years. A switch is subject to qualifying with the new lender.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="lock-head"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Side by side: interest and balance&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="sub"&gt;What you'd pay in interest, and what you'd still owe, over the period you choose.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="chips" role="group" aria-label="Compare over" style="margin:0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="chip hzc" data-hz="1" aria-pressed="false"&gt;1 yr&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="chip hzc" data-hz="3" aria-pressed="false"&gt;3 yrs&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button type="button" class="chip hzc" data-hz="5" aria-pressed="true"&gt;5 yrs&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="table-wrap" style="margin-top:4px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;table class="cmp"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Scenario&lt;/th&gt;&lt;th&gt;Rate&lt;/th&gt;&lt;th&gt;Payment&lt;/th&gt;&lt;th&gt;Interest paid&lt;/th&gt;&lt;th&gt;Principal paid&lt;/th&gt;&lt;th&gt;Balance at end&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody id="cmp"&gt;&lt;tr class="base"&gt;&lt;td&gt;Today, no change&lt;/td&gt;&lt;td&gt;3.95%&lt;/td&gt;&lt;td&gt;$2,730&lt;/td&gt;&lt;td&gt;$95,505&lt;/td&gt;&lt;td&gt;$68,295&lt;/td&gt;&lt;td&gt;$451,705&lt;/td&gt;&lt;/tr&gt;&lt;tr class=""&gt;&lt;td&gt;Adjustable after change&lt;/td&gt;&lt;td&gt;4.45%&lt;/td&gt;&lt;td&gt;$2,872&lt;/td&gt;&lt;td&gt;$107,920&lt;small style="color:var(--up)"&gt;+$12,415 vs. today&lt;/small&gt;&lt;/td&gt;&lt;td&gt;$64,413&lt;/td&gt;&lt;td&gt;$455,587&lt;small style="color:var(--up)"&gt;+$3,882 vs. today&lt;/small&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="fixed"&gt;&lt;td&gt;A: Lock in fixed&lt;/td&gt;&lt;td&gt;4.59%&lt;/td&gt;&lt;td&gt;$2,913&lt;/td&gt;&lt;td&gt;$111,405&lt;small style="color:var(--up)"&gt;+$15,900 vs. today&lt;/small&gt;&lt;/td&gt;&lt;td&gt;$63,355&lt;/td&gt;&lt;td&gt;$456,645&lt;small style="color:var(--up)"&gt;+$4,940 vs. today&lt;/small&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="pacerow"&gt;&lt;td&gt;B: Stay variable, pay like fixed&lt;/td&gt;&lt;td&gt;4.45%&lt;/td&gt;&lt;td&gt;$2,913&lt;/td&gt;&lt;td&gt;$107,637&lt;small style="color:var(--up)"&gt;+$12,132 vs. today&lt;/small&gt;&lt;/td&gt;&lt;td&gt;$67,124&lt;/td&gt;&lt;td&gt;$452,876&lt;small style="color:var(--up)"&gt;+$1,172 vs. today&lt;/small&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="switchrow"&gt;&lt;td&gt;C: Switch lenders&lt;/td&gt;&lt;td&gt;4.34%&lt;/td&gt;&lt;td&gt;$2,841&lt;/td&gt;&lt;td&gt;$105,184&lt;small style="color:var(--up)"&gt;+$9,679 vs. today&lt;/small&gt;&lt;small style="color:var(--muted)"&gt;plus $5,135 up front&lt;/small&gt;&lt;/td&gt;&lt;td&gt;$65,253&lt;/td&gt;&lt;td&gt;$454,747&lt;small style="color:var(--up)"&gt;+$3,042 vs. today&lt;/small&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="sub" id="cmpNote" style="margin:14px 0 0"&gt;Over 5 years (60 payments), starting from a balance of $520,000. Payment amounts are per month. Variable interest compounds semi-annually; fixed compounds semi-annually.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="panel summary" id="summaryPanel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Your summary&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="sub" id="sumSub"&gt;Send your results to Tyler Johnson, so your file is reviewed with the same numbers.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cgrid" style="grid-template-columns:repeat(2,minmax(0,1fr))"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;&lt;label for="cName"&gt;Your name&lt;/label&gt;&lt;div class="affix"&gt;&lt;input id="cName" maxlength="60" autocomplete="name" style="padding-left:12px;font-size:16px"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;&lt;label for="cPhone"&gt;Best phone number (optional)&lt;/label&gt;&lt;div class="affix"&gt;&lt;input id="cPhone" inputmode="tel" maxlength="30" autocomplete="tel" style="padding-left:12px;font-size:16px"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="sumText" class="sub" style="display:block;margin:0 0 6px"&gt;What will be sent&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;textarea id="sumText" readonly=""&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="sbtns"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn" id="sumMail" href="mailto:whitecapmortgages@gmail.com?subject=Variable%20mortgage%20check-up&amp;amp;body=My%20variable%20mortgage%20check-up%20(before%20the%20Oct%2028%2C%202026%20Bank%20of%20Canada%20decision)%0A%0ALender%3A%20First%20National%20%C2%B7%20Adjustable%20rate%20(payment%20follows%20prime)%20%C2%B7%20semi-annually%20compounding%0ABalance%20%24520%2C000%20%C2%B7%20Rate%203.95%25%20%C2%B7%20Payment%20%242%2C730%2Fmonth%20%C2%B7%2024%20yrs%2010%20mo%20left%0A%0AA%20rate%20change%20is%20not%20guaranteed%3B%20if%20the%20Bank%20holds%2C%20nothing%20changes.%0AIf%20rates%20change%20%2B0.50%25%3A%20new%20payment%20%242%2C872%2Fmonth%20(%2B%24142)%0AOption%20A%2C%20lock%20in%20at%204.59%25%20(estimate)%3A%20%242%2C913%2Fmonth%0AOption%20B%2C%20stay%20variable%20and%20pay%20%242%2C913%2Fmonth%3A%20paid%20off%20in%2024%20yrs%203%20mo%3B%20break-even%20variable%20rate%204.59%25%0AOption%20C%2C%20switch%20lenders%20at%204.34%25%3A%20%242%2C841%2Fmonth%20after%20%245%2C135%20in%20penalty%20and%20costs%3B%20%241%2C086%20better%20off%20than%20Option%20A%20over%205%20yrs%0A%0AI'd%20like%20to%20talk%20through%20my%20options."&gt;Email my summary to Tyler Johnson&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" class="linkbtn" id="sumCopy"&gt;Copy the text instead&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="status" id="sumStatus" role="status"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="sub" id="sumHelp" style="margin:12px 0 0"&gt;The button opens your email app with your summary filled in and addressed to &lt;b style="user-select:all"&gt;whitecapmortgages@gmail.com&lt;/b&gt;. Press send to deliver it. If your email app doesn't open, copy the text and email it to that address.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div hidden=""&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="cta"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Want a second opinion before &lt;span class="nd-long"&gt;October 28&lt;/span&gt;?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Every lender has its own conversion rules, prepayment limits and rates. &lt;span id="ctaName"&gt;Talk to Tyler Johnson&lt;/span&gt; and we'll run the real numbers on your file.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="cta-who" id="ctaWho"&gt;&lt;img id="ctaPhoto" alt="" hidden=""&gt;&lt;div&gt;&lt;b id="ctaWhoName"&gt;Tyler Johnson&lt;/b&gt;&lt;div style="opacity:.75;font-size:13px" id="ctaWhoTitle"&gt;Mortgage Expert&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="cta-contact" id="ctaContact"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="line" id="ctaPhoneL"&gt;&lt;span&gt;Phone&lt;/span&gt;&lt;b id="ctaPhone"&gt;7786865700&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="line" id="ctaEmailL"&gt;&lt;span&gt;Email&lt;/span&gt;&lt;b id="ctaEmail"&gt;whitecapmortgages@gmail.com&lt;/b&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="book" id="ctaBook" target="_blank" rel="noopener" href="https://www.whitecapmortgages.ca/"&gt;Book a call&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="fine"&gt;For illustration only, for clients with variable or adjustable-rate mortgages. Variable-rate interest is calculated with the compounding shown above, which depends on your lender; where we haven't confirmed a lender's method we assume semi-annual, and you can change it. Fixed rates use semi-annual compounding, the standard for Canadian fixed mortgages. Figures assume your remaining amortization stays the same, the rate stays the same for the whole comparison period and no other prepayments are made. Raising your payment under Option B depends on your lender's prepayment and payment-increase privileges. Your lender's figures may differ slightly because of rounding or payment timing. Fixed rates shown are estimates based on rates recently available in the market. They are for comparison and are not a quote or an approval. Rates are subject to change without notice, and actual rates depend on your lender, term, property and qualification. Converting to a fixed rate may involve your lender's conversion rate or conditions. Bank of Canada decision dates from the Bank of Canada's published 2026 and 2027 schedules.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="fine" id="agentLegal" style="margin-top:8px"&gt;Tyler Johnson, Mortgage Expert · Broker² · Verico Paragon BrokerSquared&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;&lt;script&gt;window.__BRAND__={"name":"Tyler Johnson","title":"Mortgage Expert","phone":"7786865700","email":"whitecapmortgages@gmail.com","link":"https://www.whitecapmortgages.ca/"};&lt;/script&gt;&lt;script&gt;</p>
+<p class="p1">(function(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const $ = id =&gt; document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const num = s =&gt; { const v = parseFloat(String(s).replace(/[^0-9.\-]/g,'')); return isFinite(v) ? v : NaN; };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const money = (v, d=0) =&gt; (v&lt;0?'−':'') + '$' + Math.abs(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const signed = (v, d=0) =&gt; (v&gt;0.005?'+':v&lt;-0.005?'−':'') + '$' + Math.abs(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pct = v =&gt; v.toFixed(2) + '%';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Periodic rate for n payments a year, from a nominal annual rate compounded m times a year</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const per = (annualPct, n, m) =&gt; Math.pow(1 + annualPct/(100*m), m/n) - 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Nominal annual rate (compounded m times a year) that gives periodic rate r for n payments a year</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const nominal = (r, n, m) =&gt; 100 * m * (Math.pow(1 + r, n/m) - 1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pmt = (B, r, N) =&gt; r === 0 ? B/N : B*r/(1 - Math.pow(1+r, -N));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const nper = (B, r, P) =&gt; { if (r === 0) return B/P; if (P &lt;= B*r) return Infinity; return -Math.log(1 - r*B/P)/Math.log(1+r); };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const run = (B, r, P, k) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const g = Math.pow(1 + r, k);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bal = r === 0 ? B - P*k : B*g - P*(g - 1)/r;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (bal &gt;= 0) return {balance: bal, principal: B - bal, interest: P*k - (B - bal)};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Paid off before the period ends: count full payments, then one smaller final payment</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const nf = Math.floor(nper(B, r, P) + 1e-9), gf = Math.pow(1 + r, nf);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const left = Math.max(0, r === 0 ? B - P*nf : B*gf - P*(gf - 1)/r);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return {balance: 0, principal: B, interest: P*nf + left*(1 + r) - B};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const yrs = (N, n) =&gt; { const m = Math.round(N/n*12); const y = Math.floor(m/12), mo = m%12; return y + ' yr' + (y===1?'':'s') + (mo ? ' ' + mo + ' mo' : ''); };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const compWord = (m, n) =&gt; m === 2 ? 'semi-annually' : m === 12 ? 'monthly' : m === 24 ? 'twice a month' : m === 26 ? 'every two weeks' : m === 52 ? 'weekly' : m + ' times a year';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const span = a =&gt; { a = Math.abs(a); const m = Math.round(a*12); return a &lt; 1 ? m + ' month' + (m===1?'':'s') : a.toFixed(1) + ' years'; };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Estimated fixed rates by term: RATES for locking in, SWITCH for the lowest published rates. Update with the date when rates move.</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const RATES = {3: 4.39, 5: 4.59}, SWITCH = {3: 4.19, 5: 4.34}, RATES_ASOF = 'October 2, 2026';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let bump = 0.25, hz = 5, penEdited = false, term = 5, sEdited = false;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('t3').textContent = 'about ' + pct(RATES[3]); $('t5').textContent = 'about ' + pct(RATES[5]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('rateDisc').textContent = 'These rates are estimates based on what was available in the market as of ' + RATES_ASOF + '. They are not a quote, and a lender\'s lock-in rate may be different. Rates are subject to change without notice.';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sRate').value = SWITCH[term].toFixed(2);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Bank of Canada policy rate announcement dates (published 2026 and 2027 schedules)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const BOC = ['2026-01-28','2026-03-18','2026-04-29','2026-06-10','2026-07-15','2026-09-02','2026-10-28','2026-12-09',</p>
+<p class="p1"><span class="Apple-converted-space">               </span>'2027-01-27','2027-03-03','2027-04-28','2027-06-02','2027-07-21','2027-09-08','2027-10-27','2027-12-08'];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function nextDecision(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const t = new Date(), today = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const d = BOC.find(x =&gt; x &gt;= today); if (!d) return null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const [y, mo, da] = d.split('-').map(Number);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return {isToday: d === today, long: MONTHS[mo-1] + ' ' + da, full: MONTHS[mo-1].slice(0,3) + ' ' + da + ', ' + y};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const ND = nextDecision();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (ND) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ndPill').textContent = (ND.isToday ? 'Bank of Canada decision today: ' : 'Next Bank of Canada decision: ') + ND.full;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.nd-long').forEach(e =&gt; e.textContent = ND.long);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ndPill').textContent = 'Check the next Bank of Canada decision date';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.nd-long').forEach(e =&gt; e.textContent = 'next');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const setChips = () =&gt; document.querySelectorAll('.chip[data-bump]').forEach(c =&gt; c.setAttribute('aria-pressed', Math.abs(parseFloat(c.dataset.bump) - bump) &lt; 1e-9 ? 'true' : 'false'));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const setDelta = (el, v, suffix) =&gt; { el.className = 'delta num ' + (v &gt; 0.5 ? 'up' : v &lt; -0.5 ? 'down' : 'flat'); el.textContent = Math.abs(v) &lt; 0.5 ? 'No change' : signed(v) + ' ' + suffix; };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function syncLender(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sel = $('lender'), o = sel.options[sel.selectedIndex];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('comp').value = o.value === 'monthly' ? '12' : o.value === 'pf' ? 'pf' : '2';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const nm = o.text === 'Other lender' ? 'your lender' : `&lt;b&gt;${o.text}&lt;/b&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('compNote').innerHTML = o.value === 'monthly' ? `${nm} compounds variable-rate interest monthly. We've set that below.`</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: o.value === 'pf' ? `${nm} compounds variable-rate interest every payment period, so monthly if you pay monthly. We've set that below.`</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: o.value === 'semi' ? `${nm} compounds variable-rate interest semi-annually. We've set that below.`</p>
+<p class="p1"><span class="Apple-converted-space">      </span>: `We haven't confirmed how ${nm} compounds variable-rate interest, so we've assumed semi-annual. Check your mortgage documents and change it below if it's different.`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function calc(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const B = num($('bal').value), j = num($('rate').value), P = num($('pay').value), n = +$('freq').value;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const m = $('comp').value === 'pf' ? n : +$('comp').value, adj = $('typeAdj').checked;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const err = $('err'), res = $('results');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const fail = msg =&gt; { err.textContent = msg; err.hidden = false; $('derived').innerHTML=''; res.style.opacity = .35; };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!(B &gt; 0) || !(j &gt;= 0) || !(P &gt; 0)) return fail('Enter your balance, rate and payment to see results.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (j &gt; 0 &amp;&amp; j &lt; 1) return fail('Enter your rate as a percentage. For example, type 4.45 for 4.45%, not 0.0445.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (j &gt; 25) return fail('That rate looks too high. Enter it as a percentage, for example 4.45.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const r0 = per(j, n, m);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const N = nper(B, r0, P);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!isFinite(N)) return fail('At ' + pct(j) + ', this payment doesn\'t cover the interest on a ' + money(B) + ' balance. Check the numbers against your statement.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>err.hidden = true; res.style.opacity = 1;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const unit = n === 12 ? 'month' : 'payment';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const k = Math.round(hz * n);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const toMonth = v =&gt; v * n / 12;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const int0 = B * r0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const trig = nominal(P / B, n, m);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('derived').innerHTML =</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;div class="kv"&gt;&lt;dt&gt;Time left to pay off&lt;/dt&gt;&lt;dd class="num"&gt;${yrs(N,n)}&lt;/dd&gt;&lt;/div&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;div class="kv"&gt;&lt;dt&gt;Interest in this ${unit}&lt;/dt&gt;&lt;dd class="num"&gt;${money(int0)}&lt;/dd&gt;&lt;/div&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;div class="kv"&gt;&lt;dt&gt;Principal in this ${unit}&lt;/dt&gt;&lt;dd class="num"&gt;${money(P-int0)}&lt;/dd&gt;&lt;/div&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>(n !== 12 ? `&lt;div class="kv"&gt;&lt;dt&gt;Monthly equivalent&lt;/dt&gt;&lt;dd class="num"&gt;${money(toMonth(P))}&lt;/dd&gt;&lt;/div&gt;` : '') +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>(!adj ? `&lt;div class="kv"&gt;&lt;dt&gt;Trigger rate&lt;/dt&gt;&lt;dd class="num"&gt;${pct(trig)}&lt;/dd&gt;&lt;/div&gt;` : '');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// After the Bank of Canada change</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const j1 = j + bump, r1 = per(j1, n, m), P1 = pmt(B, r1, N);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const N1 = nper(B, r1, P);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const reqPay = adj ? P1 : P; <span class="Apple-converted-space">            </span>// what the lender requires after the change</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('vNewRate').textContent = pct(j1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const note = $('staticNote');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (adj) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const d = P1 - P;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vLabel').textContent = 'New payment';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vNew').textContent = money(P1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setDelta($('vDelta'), d, 'per ' + unit);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vT2').textContent = d &gt;= 0 ? 'Extra per month' : 'Less per month';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vT3').textContent = d &gt;= 0 ? 'Extra per year' : 'Less per year';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vMonth').textContent = signed(toMonth(d));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vYear').textContent = signed(d * n);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>note.className = 'note';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>note.innerHTML = `&lt;b&gt;Adjustable rate: your payment follows prime&lt;/b&gt;Your lender resets your payment so your payoff time stays at about ${yrs(N,n)}.`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vLabel').textContent = 'Your payment';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vNew').textContent = money(P);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vT2').textContent = 'Interest in each ' + unit;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vMonth').textContent = money(B * r1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vT3').textContent = 'New payoff time';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('vYear').textContent = isFinite(N1) ? yrs(N1, n) : 'Not paying down';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!isFinite(N1)) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('vDelta').className = 'delta up num'; $('vDelta').textContent = 'Past trigger rate';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>note.className = 'note warn';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>note.innerHTML = `&lt;b&gt;Variable rate: past your trigger rate&lt;/b&gt;At ${pct(j1)} your payment would no longer cover the interest. Your estimated trigger rate is ${pct(trig)}. Most lenders would ask you to raise your payment or make a lump-sum payment.`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ext = (N1 - N) / n;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('vDelta').className = 'delta num ' + (ext &gt; 0.04 ? 'up' : ext &lt; -0.04 ? 'down' : 'flat');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('vDelta').textContent = Math.abs(ext) &lt; 0.04 ? 'Payoff time unchanged' : (ext &gt; 0 ? '+' : '−') + span(ext) + ' to pay off';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>note.className = 'note' + (N1 / n &gt; 30 ? ' warn' : '');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>note.innerHTML = Math.abs(bump) &lt; 1e-9 ? `&lt;b&gt;Variable rate: your payment stays the same&lt;/b&gt;Nothing changes: your payoff time stays at ${yrs(N,n)}. Trigger rate: ${pct(trig)}.`</p>
+<p class="p1"><span class="Apple-converted-space">          </span>: `&lt;b&gt;Variable rate: your payment stays the same&lt;/b&gt;${bump &gt; 0 ? 'More' : 'Less'} of each payment goes to interest (${money(B*r1)} instead of ${money(int0)}). Your payoff time ${bump &gt; 0 ? 'stretches' : 'shortens'} from ${yrs(N,n)} to ${yrs(N1,n)}. Trigger rate: ${pct(trig)}.`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Option A: lock in (fixed rates compound semi-annually)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const L = num($('lock').value), okL = L &gt;= 0 &amp;&amp; L &lt;= 25;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tiles = ['lNew','lMonth','lVsVar','lInt','pPay','pYrs','pVsInt','pBE'];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!okL) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tiles.forEach(id =&gt; $(id).textContent = '–');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>['lDelta','pDelta'].forEach(id =&gt; { $(id).className = 'delta flat num'; $(id).textContent = 'Enter a fixed rate'; });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('ladder').innerHTML = ''; $('paceNote').textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let rL, PL;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (okL) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rL = per(L, n, 2); PL = pmt(B, rL, N);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const dL = PL - P;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('lNew').textContent = money(PL);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setDelta($('lDelta'), dL, 'per ' + unit);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('lMonth').textContent = signed(toMonth(dL));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const vs = toMonth(PL - reqPay);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('lVsVar').textContent = Math.abs(vs) &lt; 0.5 ? 'Same' : signed(vs) + '/mo';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('lInt').textContent = money(B * rL);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const rows = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let x = 4.0; x &lt;= 6.001; x += 0.25) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const rx = per(x, n, 2), p = pmt(B, rx, N), dd = p - P, s = run(B, rx, p, k);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const sel = Math.abs(x - L) &lt; 0.125;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>rows.push(`&lt;tr class="row${sel?' sel':''}" data-rate="${x.toFixed(2)}" tabindex="0"&gt;&lt;td&gt;${pct(x)}&lt;/td&gt;&lt;td&gt;${money(p)}&lt;/td&gt;&lt;td class="${dd&gt;0.5?'up':dd&lt;-0.5?'down':''}"&gt;${signed(dd)}&lt;/td&gt;&lt;td&gt;${money(s.interest)}&lt;/td&gt;&lt;td&gt;${money(s.balance)}&lt;/td&gt;&lt;/tr&gt;`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('ladder').innerHTML = rows.join('');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Option B: stay variable, pay the fixed payment (never less than the lender requires)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const PB = Math.max(PL, reqPay), clamped = PB &gt; PL + 0.005;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const NB = nper(B, r1, PB);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const be = nominal(rL, n, m); <span class="Apple-converted-space">            </span>// variable rate with the same periodic cost as the fixed rate</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const sB = run(B, r1, PB, k), sL = run(B, rL, PL, k);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pRateLbl').textContent = pct(L);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pPay').textContent = money(PB);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setDelta($('pDelta'), PB - P, 'per ' + unit + ' vs. today');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pAt').textContent = pct(j1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pYrs').textContent = isFinite(NB) ? yrs(NB, n) : 'Not paying down';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const di = sB.interest - sL.interest;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pVsInt').textContent = Math.abs(di) &lt; 0.5 ? 'Same' : signed(di);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pBE').textContent = pct(be);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pn = $('paceNote');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (clamped) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pn.className = 'note';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pn.innerHTML = `&lt;b&gt;Your payment is already higher than the fixed payment&lt;/b&gt;${adj ? 'After the change, your adjustable payment' : 'Your current payment'} of ${money(reqPay)} is above the fixed payment of ${money(PL)} at ${pct(L)}, so there's nothing to raise. Locking in at ${pct(L)} would lower your payment.` + (j1 &gt; be ? ` Your variable rate of ${pct(j1)} is also above the break-even rate of ${pct(be)}.` : '');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ahead = sL.balance - sB.balance;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pn.className = 'note';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pn.innerHTML = `&lt;b&gt;How it works&lt;/b&gt;Pay ${money(PB)} per ${unit} and keep your variable rate. At ${pct(j1)} you'd pay off in ${isFinite(NB) ? yrs(NB, n) : '—'} instead of ${yrs(N, n)}, and after ${hz} year${hz===1?'':'s'} you'd owe ${money(Math.abs(ahead))} ${ahead &gt;= 0 ? 'less' : 'more'} than if you locked in. As long as your variable rate stays at or below ${pct(be)}, you stay on course to pay off at least as fast as the fixed option.` + (m &gt; 2 ? ` Because your lender compounds more often than twice a year, the break-even rate is a little below ${pct(L)}.` : '');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Option C: switch lenders (penalty estimated as 3 months' interest at the current rate)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const penEst = B * j / 100 * 3 / 12;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('sPenHint').textContent = 'About 3 months\' interest at your rate: ' + money(penEst) + '. Some lenders use prime instead, which makes it higher. Confirm with your lender.';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!penEdited) $('sPen').value = Math.round(penEst).toLocaleString('en-CA');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const S = num($('sRate').value), pen = Math.max(0, num($('sPen').value) || 0), oth = Math.max(0, num($('sCost').value) || 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const costs = pen + oth, added = $('sAdd').checked;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let sw = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (okL &amp;&amp; S &gt;= 0 &amp;&amp; S &lt;= 25) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const rS = per(S, n, 2), BC = added ? B + costs : B, PC = pmt(BC, rS, N), upfront = added ? 0 : costs;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Compare with Option A by total cost: payments made + upfront costs + balance still owed</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const costAt = (t) =&gt; { const a = run(B, rL, PL, t), c = run(BC, rS, PC, t); return (PL*t + a.balance) - (PC*t + c.balance + upfront); };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const net = costAt(k);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let beT = null; for (let t = 1; t &lt;= Math.ceil(N); t++) { if (costAt(t) &gt;= 0) { beT = t; break; } }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>sw = {S, PC, costs, net, beT, added, sC: run(BC, rS, PC, k), BC, upfront};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sPay').textContent = money(PC);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setDelta($('sDelta'), PC - PL, 'per ' + unit + ' vs. Option A');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sCostT').textContent = money(costs);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sNet').textContent = Math.abs(net) &lt; 0.5 ? 'Even' : (net &gt; 0 ? '+' : '−') + money(Math.abs(net)).slice(0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sNet').style.color = net &gt; 0.5 ? 'var(--down)' : net &lt; -0.5 ? 'var(--up)' : '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const beTxt = beT === null ? 'Not within your amortization' : beT &lt;= 1 ? 'Right away' : (beT/n*12 &lt; 24 ? Math.round(beT/n*12) + ' months' : (beT/n).toFixed(1) + ' years');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sBE').textContent = beTxt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('switchNote').className = 'note' + (net &lt; -0.5 ? ' warn' : '');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('switchNote').innerHTML = S &gt;= L</p>
+<p class="p1"><span class="Apple-converted-space">        </span>? `&lt;b&gt;No rate advantage&lt;/b&gt;The new lender's rate of ${pct(S)} isn't below the ${pct(L)} you'd lock in with your current lender, so switching would only add the penalty and costs.`</p>
+<p class="p1"><span class="Apple-converted-space">        </span>: `&lt;b&gt;${net &gt; 0.5 ? 'Switching comes out ahead' : 'Switching doesn\'t pay off in this period'}&lt;/b&gt;Over ${hz} year${hz===1?'':'s'}, switching at ${pct(S)} leaves you ${money(Math.abs(net))} ${net &gt;= 0 ? 'better' : 'worse'} off than locking in at ${pct(L)} with your current lender, after ${money(costs)} in penalty and costs${added ? ' added to your mortgage' : ' paid up front'}. ` +</p>
+<p class="p1"><span class="Apple-converted-space">          </span>(beT !== null ? `The lower rate pays back those costs after about ${beTxt.toLowerCase()}.` : `The lower rate doesn't pay back those costs.`) +</p>
+<p class="p1"><span class="Apple-converted-space">          </span>` A switch is subject to qualifying with the new lender.`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>['sPay','sCostT','sNet','sBE'].forEach(id =&gt; $(id).textContent = '–');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sDelta').className = 'delta flat num'; $('sDelta').textContent = okL ? 'Enter a rate' : 'Enter a fixed rate in Option A';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('switchNote').textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Side by side</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const base = run(B, r0, P, k);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const scen = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{cls:'base', name:'Today, no change', rate:j, pay:P, s:base},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{name: adj ? 'Adjustable after change' : 'Variable after change', rate:j1, pay:reqPay, s:run(B, r1, reqPay, k)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (okL) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>scen.push({cls:'fixed', name:'A: Lock in fixed', rate:L, pay:PL, s:run(B, rL, PL, k)});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const PB = Math.max(PL, reqPay);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>scen.push({cls:'pacerow', name:'B: Stay variable, pay like fixed', rate:j1, pay:PB, s:run(B, r1, PB, k)});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (sw) scen.push({cls:'switchrow', name:'C: Switch lenders', rate:sw.S, pay:sw.PC, s:sw.sC, start:sw.BC,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>extra: sw.costs &gt; 0.5 ? `&lt;small style="color:var(--muted)"&gt;${sw.added ? 'includes ' + money(sw.costs) + ' added' : 'plus ' + money(sw.costs) + ' up front'}&lt;/small&gt;` : ''});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const diff = (v, b) =&gt; { const d = v - b; return Math.abs(d) &lt; 0.5 ? '' : `&lt;small style="color:var(--${d&gt;0?'up':'down'})"&gt;${signed(d)} vs. today&lt;/small&gt;`; };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('cmp').innerHTML = scen.map(x =&gt; `&lt;tr class="${x.cls||''}"&gt;&lt;td&gt;${x.name}&lt;/td&gt;&lt;td&gt;${pct(x.rate)}&lt;/td&gt;&lt;td&gt;${money(x.pay)}&lt;/td&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;td&gt;${money(x.s.interest)}${x.cls==='base'?'':diff(x.s.interest, base.interest)}${x.extra &amp;&amp; !sw.added ? x.extra : ''}&lt;/td&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;td&gt;${x.s.principal &lt; -0.5 ? `&lt;span style="color:var(--up)"&gt;Balance grew ${money(-x.s.principal)}&lt;/span&gt;` : money(x.s.principal)}&lt;/td&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;td&gt;${money(x.s.balance)}${x.cls==='base'?'':diff(x.s.balance, base.balance)}${x.extra &amp;&amp; sw.added ? x.extra : ''}&lt;/td&gt;&lt;/tr&gt;`).join('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('cmpNote').textContent = `Over ${hz} year${hz===1?'':'s'} (${k} payments), starting from a balance of ${money(B)}. Payment amounts are per ${unit}. Variable interest compounds ${compWord(m, n)}; fixed compounds semi-annually.`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.hz').forEach(e =&gt; e.textContent = hz + (hz===1?' yr':' yrs'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>buildSummary({B, j, P, n, m, adj, N, unit, j1, P1, reqPay, okL, L, PL, be: okL ? nominal(rL, n, m) : NaN, hz, sw});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function buildSummary(v){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const c = (window.__agentContact &amp;&amp; window.__agentContact()) || {};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lender = $('lender').options[$('lender').selectedIndex].text;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const per_ = v.unit === 'month' ? '/month' : ' per payment';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sgn = x =&gt; (x &gt;= 0 ? '+' : '−') + '$' + Math.abs(x).toLocaleString('en-CA',{maximumFractionDigits:0});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const L1 = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('My variable mortgage check-up' + (ND ? ' (before the ' + ND.full + ' Bank of Canada decision)' : ''));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('Lender: ' + lender + ' · ' + (v.adj ? 'Adjustable rate (payment follows prime)' : 'Variable rate (payment stays the same)') + ' · ' + compWord(v.m, v.n) + ' compounding');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('Balance ' + money(v.B) + ' · Rate ' + pct(v.j) + ' · Payment ' + money(v.P) + per_ + ' · ' + yrs(v.N, v.n) + ' left');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ch = (bump &gt;= 0 ? '+' : '') + bump.toFixed(2) + '%';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('A rate change is not guaranteed; if the Bank holds, nothing changes.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (v.adj) L1.push('If rates change ' + ch + ': new payment ' + money(v.P1) + per_ + ' (' + sgn(v.P1 - v.P) + ')');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>else L1.push('If rates change ' + ch + ': payment stays ' + money(v.P) + per_ + '; payoff time ' + ($('vYear').textContent));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (v.okL) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>L1.push('Option A, lock in at ' + pct(v.L) + ' (estimate)' + ': ' + money(v.PL) + per_);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>L1.push('Option B, stay variable and pay ' + money(Math.max(v.PL, v.reqPay)) + per_ + ': paid off in ' + $('pYrs').textContent + '; break-even variable rate ' + pct(v.be));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (v.sw) L1.push('Option C, switch lenders at ' + pct(v.sw.S) + ': ' + money(v.sw.PC) + per_ + ' after ' + money(v.sw.costs) + ' in penalty and costs; ' + (Math.abs(v.sw.net) &lt; 0.5 ? 'even with' : money(Math.abs(v.sw.net)) + (v.sw.net &gt; 0 ? ' better off than' : ' worse off than')) + ' Option A over ' + v.hz + ' yr' + (v.hz === 1 ? '' : 's'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>L1.push("I'd like to talk through my options.");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cn = $('cName').value.trim(), cp = $('cPhone').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (cn || cp) { L1.push(''); L1.push([cn, cp].filter(Boolean).join(' · ')); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const text = L1.join('\n');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('sumText').value = text;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const mail = $('sumMail');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const who = c.name || 'your mortgage professional';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const okMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email || '');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (okMail) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>mail.hidden = false; mail.textContent = 'Email my summary to ' + who;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>mail.href = 'mailto:' + c.email + '?subject=' + encodeURIComponent('Variable mortgage check-up' + (cn ? ' – ' + cn : '')) + '&amp;body=' + encodeURIComponent(text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sumHelp').innerHTML = 'The button opens your email app with your summary filled in and addressed to &lt;b style="user-select:all"&gt;&lt;/b&gt;. Press send to deliver it. If your email app doesn\'t open, copy the text and email it to that address.';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sumHelp').querySelector('b').textContent = c.email;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>mail.hidden = true; mail.removeAttribute('href');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('sumHelp').textContent = c.setup ? 'Add your email in the agent setup above to turn on the "Email my summary" button for your clients.' : 'Copy the text and send it to your mortgage professional.';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('sumSub').textContent = `Send your results to ${who}, so your file is reviewed with the same numbers.`;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sumCopy').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const t = $('sumText');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const done = () =&gt; $('sumStatus').textContent = 'Copied. Paste it into an email.';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const fallback = () =&gt; { t.focus(); t.select(); $('sumStatus').textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.'; };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (navigator.clipboard &amp;&amp; navigator.clipboard.writeText) navigator.clipboard.writeText(t.value).then(done).catch(fallback); else fallback();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>['cName','cPhone'].forEach(id =&gt; $(id).addEventListener('input', calc));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sPen').addEventListener('input', () =&gt; { penEdited = $('sPen').value.trim() !== ''; calc(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sRate').addEventListener('input', () =&gt; { sEdited = true; calc(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sCost').addEventListener('input', calc);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('sAdd').addEventListener('change', calc);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.__recalc = calc;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>['bal','rate','pay','freq','comp','typeAdj','typeVar'].forEach(id =&gt; { $(id).addEventListener('input', calc); $(id).addEventListener('change', calc); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('lender').addEventListener('change', () =&gt; { syncLender(); calc(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>['bal','pay'].forEach(id =&gt; $(id).addEventListener('blur', e =&gt; { const v = num(e.target.value); if (isFinite(v)) e.target.value = v.toLocaleString('en-CA',{maximumFractionDigits:2}); }));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('.hzc').forEach(c =&gt; c.addEventListener('click', () =&gt; { hz = +c.dataset.hz; document.querySelectorAll('.hzc').forEach(b =&gt; b.setAttribute('aria-pressed', b === c ? 'true' : 'false')); calc(); }));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('.chip[data-bump]').forEach(c =&gt; c.addEventListener('click', () =&gt; { bump = parseFloat(c.dataset.bump); $('bump').value = bump.toFixed(2); setChips(); calc(); }));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bump').addEventListener('input', e =&gt; { const v = num(e.target.value); if (isFinite(v)) { bump = v; setChips(); calc(); } });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const QA = sel =&gt; $('results').querySelectorAll(sel);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pressTerms = () =&gt; { const v = num($('lock').value); QA('.term').forEach(b =&gt; b.setAttribute('aria-pressed', +b.dataset.term === term &amp;&amp; Math.abs(v - RATES[term]) &lt; 0.005 ? 'true' : 'false')); };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>QA('.term').forEach(b =&gt; b.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>term = +b.dataset.term; hz = term;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('lock').value = RATES[term].toFixed(2); $('lockRange').value = RATES[term];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!sEdited) $('sRate').value = SWITCH[term].toFixed(2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>QA('.hzc').forEach(c =&gt; c.setAttribute('aria-pressed', +c.dataset.hz === hz ? 'true' : 'false'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>pressTerms(); calc();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('lock').addEventListener('input', e =&gt; { const v = num(e.target.value); if (isFinite(v)) $('lockRange').value = Math.min(7, Math.max(3.5, v)); pressTerms(); calc(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('lockRange').addEventListener('input', e =&gt; { $('lock').value = (+e.target.value).toFixed(2); pressTerms(); calc(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pickRow = tr =&gt; { $('lock').value = tr.dataset.rate; $('lockRange').value = tr.dataset.rate; pressTerms(); calc(); };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('ladder').addEventListener('click', e =&gt; { const tr = e.target.closest('tr.row'); if (tr) pickRow(tr); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('ladder').addEventListener('keydown', e =&gt; { if ((e.key === 'Enter' || e.key === ' ') &amp;&amp; e.target.matches('tr.row')) { e.preventDefault(); pickRow(e.target); } });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('form').addEventListener('submit', e =&gt; e.preventDefault());</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>syncLender();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>calc();</p>
+<p class="p1">})();</p>
+<p class="p1">&lt;/script&gt;&lt;script&gt;</p>
+<p class="p1">(function(){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const $ = id =&gt; document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const FIELDS = {name:'bName', title:'bTitle', team:'bTeam', lic:'bLic', phone:'bPhone', email:'bEmail', link:'bLink'};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const baked = window.__BRAND__ || null; <span class="Apple-converted-space">      </span>// present only in a downloaded page</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let brand = baked || {};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!baked) { try { brand = JSON.parse(localStorage.getItem('b2brand') || '{}') || {}; } catch (e) { brand = {}; } }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const clean = s =&gt; String(s || '').trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const safeLink = u =&gt; { u = clean(u); if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : ''; } catch (e) { return ''; } };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.__agentContact = () =&gt; ({name: clean(brand.name), email: clean(brand.email), phone: clean(brand.phone), setup: !baked});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function apply(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const b = brand, name = clean(b.name), title = clean(b.title), team = clean(b.team);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sub = [title, team].filter(Boolean).join(' · ');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const has = !!(name || b.phone || b.email);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('agentCard').hidden = !has;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('agentName').textContent = name || 'Your mortgage professional';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('agentTitle').textContent = sub;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('agentPhone').textContent = clean(b.phone);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>[['agentPhoto'],['ctaPhoto']].forEach(([id]) =&gt; { const im = $(id); if (b.photo) { im.src = b.photo; im.hidden = false; } else { im.removeAttribute('src'); im.hidden = true; } });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('fixedTalk').textContent = name ? `Talk to ${name} directly.` : 'Talk to your mortgage professional directly.';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ctaName').textContent = name ? `Talk to ${name}` : 'Talk to your Broker² mortgage professional';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ctaWho').hidden = !name; $('ctaWhoName').textContent = name; $('ctaWhoTitle').textContent = sub;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ctaPhone').textContent = clean(b.phone); $('ctaPhoneL').hidden = !clean(b.phone);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ctaEmail').textContent = clean(b.email); $('ctaEmailL').hidden = !clean(b.email);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const link = safeLink(b.link); $('ctaBook').hidden = !link; if (link) $('ctaBook').href = link; else $('ctaBook').removeAttribute('href');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('ctaContact').hidden = !(clean(b.phone) || clean(b.email) || link);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const legal = [name, title, clean(b.lic) ? 'Licence #' + clean(b.lic) : '', team].filter(Boolean).join(', ');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('agentLegal').textContent = (legal ? legal + ' · ' : '') + 'Broker² · Verico Paragon BrokerSquared';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.title = name ? `Variable Rate Check-Up | ${name} | Broker²` : 'Broker² Variable Rate Check-Up';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (window.__recalc) window.__recalc();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (baked) { const s = $('setup'); if (s) s.remove(); apply(); return; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const save = () =&gt; { try { localStorage.setItem('b2brand', JSON.stringify(brand)); } catch (e) {} };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const status = t =&gt; { $('bStatus').textContent = t; };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Object.entries(FIELDS).forEach(([k, id]) =&gt; { $(id).value = brand[k] || ''; $(id).addEventListener('input', e =&gt; { brand[k] = e.target.value; save(); apply(); }); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const showPrev = () =&gt; { const p = $('bPhotoPrev'); if (brand.photo) { p.src = brand.photo; p.hidden = false; $('bPhotoClear').hidden = false; } else { p.hidden = true; $('bPhotoClear').hidden = true; } };</p>
+<p class="p1"><span class="Apple-converted-space">  </span>showPrev();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bPhotoIn').addEventListener('change', e =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const f = e.target.files &amp;&amp; e.target.files[0]; if (!f) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const img = new Image(), url = URL.createObjectURL(f);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>img.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const S = 240, c = document.createElement('canvas'); c.width = c.height = S;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const k = Math.max(S / img.width, S / img.height), w = img.width * k, h = img.height * k;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, S, S); g.drawImage(img, (S - w) / 2, (S - h) / 2, w, h);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>brand.photo = c.toDataURL('image/jpeg', 0.85); URL.revokeObjectURL(url); save(); showPrev(); apply();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>img.onerror = () =&gt; { status('That file could not be read as an image. Try a JPG or PNG.'); URL.revokeObjectURL(url); };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>img.src = url;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bPhotoClear').addEventListener('click', () =&gt; { delete brand.photo; $('bPhotoIn').value = ''; save(); showPrev(); apply(); });</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bReset').addEventListener('click', () =&gt; { brand = {}; Object.values(FIELDS).forEach(id =&gt; $(id).value = ''); $('bPhotoIn').value = ''; save(); showPrev(); apply(); status('Cleared.'); });</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function buildHTML(){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const app = $('app').cloneNode(true);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const s = app.querySelector('#setup'); if (s) s.remove();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const data = {}; Object.keys(FIELDS).forEach(k =&gt; { if (clean(brand[k])) data[k] = clean(brand[k]); }); if (brand.photo) data.photo = brand.photo;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const json = JSON.stringify(data).replace(/&lt;/g, '\\u003c');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const fonts = [...document.querySelectorAll('link[href*="fonts.g"]')].map(l =&gt; l.outerHTML).join('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const title = data.name ? `Variable Rate Check-Up | ${data.name} | Broker²` : 'Broker² Variable Rate Check-Up';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const esc = t =&gt; t.replace(/&amp;/g,'&amp;amp;').replace(/&lt;/g,'&amp;lt;');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return '&lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"&gt;' +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;title&gt;${esc(title)}&lt;/title&gt;` + fonts + '&lt;style&gt;' + $('appcss').textContent + '&lt;/style&gt;&lt;/head&gt;&lt;body&gt;' + app.outerHTML +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`&lt;script&gt;window.__BRAND__=${json};&lt;\/script&gt;` +</p>
+<p class="p1"><span class="Apple-converted-space">      </span>'&lt;script&gt;' + $('appjs').textContent + '&lt;\/script&gt;&lt;script&gt;' + $('brandjs').textContent + '&lt;\/script&gt;&lt;/body&gt;&lt;/html&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const fileName = () =&gt; 'variable-rate-check-up' + (clean(brand.name) ? '-' + clean(brand.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : '') + '.html';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>let dl = null;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bDownload').hidden = true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (window.claude &amp;&amp; window.claude.use) window.claude.use('downloads').then(d =&gt; { dl = d; if (d) $('bDownload').hidden = false; }).catch(() =&gt; {});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bDownload').addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!clean(brand.name)) { status('Add your name first.'); $('bName').focus(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean(brand.email))) { status('Add your email first. Clients\' summaries are sent to it.'); $('bEmail').focus(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try { await dl.save({filename: fileName(), data: buildHTML()}); status('Saved ' + fileName() + '.'); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>catch (e) { status(e &amp;&amp; e.code === 'declined' ? 'Download cancelled.' : 'Download is not available here. Use Copy page HTML instead.'); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>$('bCopy').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!clean(brand.name)) { status('Add your name first.'); $('bName').focus(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean(brand.email))) { status('Add your email first. Clients\' summaries are sent to it.'); $('bEmail').focus(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const html = buildHTML();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>navigator.clipboard.writeText(html).then(() =&gt; status('Copied. Paste it into a new .html file or your website builder.'))</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.catch(() =&gt; status('Copying is blocked in this view. Use Download instead.'));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>apply();</p>
+<p class="p1">})();</p>
+<p class="p1">&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</p>
+</body>
+</html>
